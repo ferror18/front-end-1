@@ -7,12 +7,12 @@ import ClientForm from './ClientForm'
 export default function Client(){
 
     const initialFormValues = {
-        name: '',
+        userName: '',
         password: ''
     }
 
     const initialFormErrors = {
-        name: '',
+        userName: '',
         password: ''
     }
 

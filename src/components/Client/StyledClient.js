@@ -5,6 +5,7 @@ export const StyledButton = styled.button`
     width: 20%;
     background-color: #84C3E0;
     font-size: 1rem;
+    margin: 5% 0 0 0;
 
     &:hover{
         cursor: pointer;
@@ -34,5 +35,14 @@ export const StyledHeader = styled.div`
 `
 
 export const StyledErrorDiv = styled.div`
+    color: crimson;
+    background-color: aliceblue;
+`
 
+export const StyledInnerForm = styled.div`
+    padding: 0 3% 0 3%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 1.25rem;
 `
