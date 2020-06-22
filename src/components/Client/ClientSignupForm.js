@@ -39,7 +39,49 @@ export default function ClientSignupForm(props){
                         />
                     </label>
 
-                    
+                    <label htmlFor='firstNameInput'>
+                        First Name:
+                        <input 
+                            type='text'
+                            id='firstNameInput'
+                            value={values.firstName}
+                            onChange={onInputChange}
+                            name='firstName'
+                        />
+                    </label>
+
+                    <label htmlFor='lastNameInput'>
+                        Last Name:
+                        <input 
+                            type='text'
+                            id='lastNameInput'
+                            value={values.lastName}
+                            onChange={onInputChange}
+                            name='lastName'
+                        />
+                    </label>
+
+                    <label htmlFor='emailInput'>
+                        Email:
+                        <input 
+                            type='email'
+                            id='emailInput'
+                            value={values.email}
+                            onChange={onInputChange}
+                            name='email'
+                        />
+                    </label>
+
+                    <label htmlFor='roleInput'>
+                        Role: 
+                        <select id='roleInput' onChange={onInputChange} value={values.roleId} name='roleId'>
+                            <option value=''>-- Select a Role --</option>
+                            <option value='Instructor'>Instructor</option>
+                            <option value='Client'>Client</option>
+                        </select>
+                    </label>
+
+
                     <StyledButton id='signup' disabled={disabled} style={{background: "aliceblue"}}>Signup</StyledButton>
                 </StyledInnerForm>
             </StyledForm>
