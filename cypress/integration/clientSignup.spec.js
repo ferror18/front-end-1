@@ -18,4 +18,14 @@ describe('Navigates to client signup page and loads', () => {
         cy.visit('http://localhost:3000')
         cy.contains('Client Signup').click()
     })
+
+    it('loads client signup page correctly', () => {
+        cy.contains('Username:')
+        cy.contains('Password:')
+        cy.contains('First Name:')
+        cy.contains('Last Name:')
+        cy.contains('Email:')
+        cy.contains('Role:')
+        cy.get('#signup').should('be.disabled')
+    })
 })
