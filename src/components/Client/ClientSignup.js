@@ -39,7 +39,28 @@ export default function ClientSignup(){
     const [disabled, setDisabled] = useState(initialDisabled)
 
     const onInputChange = event => {
+        const {name, value} = event.target
 
+        Yup
+            .reach(formSchema, name)
+            .validate(value)
+            .then(() => {
+                setFormErrors({
+                    ...formErrors,
+                    [name]: ''
+                })
+            })
+            .catch(err => {
+                setFormErrors({
+                    ...formErrors,
+                    [name]: err.errors[0]
+                })
+            })
+
+        setFormValues({
+            ...formValues,
+            [name]:value
+        })
     }
 
     const onSubmit = event => {
