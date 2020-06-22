@@ -24,9 +24,10 @@ export default function Client(){
             .then(res => {
                 console.log('then')
                 console.log(res.data.message)
+                history.push('/')
             })
             .catch(err => {
-                setError("Unfortunatelythere is no record for that username and password. You can signup or try again.")
+                setError("Unfortunately there is no record for that username and password. You can signup or try again.")
                 history.push('/client/login')
             })
             .finally( () => {

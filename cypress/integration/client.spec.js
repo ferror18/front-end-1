@@ -99,3 +99,22 @@ describe('Enters in valid input and submits the data for an unknown user', () =>
         cy.contains('Unfortunately')
     })
 })
+
+describe('Enters in valid input and submits data for a konwn user', () => {
+    it('navigates to client login page and all input fields are blank', () => {
+        cy.visit('http://localhost:3000')
+        cy.contains('Client Login').click()
+        cy.get('#userNameInput').should('be.empty')
+            .should('have.value', '')
+         cy.get('#passwordInput').should('be.empty')
+            .should('have.value', '')
+        cy.get('#login').should('be.disabled')
+    })
+
+    it('enters in valid data for a known user', () => {
+        cy.get('#userNameInput').type('duellje')
+        cy.get('#passwordInput').type('password')
+        cy.get('#login').click()
+        
+    })
+})
