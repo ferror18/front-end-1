@@ -58,3 +58,25 @@ describe('Able to input data into the form', () => {
         cy.get('#submit').should('be.enabled')
     })
 })
+
+describe('Error messages appear if incorrect format of username and password are entered', () => {
+    it('navigates to client login page and all input fields are blank', () => {
+        cy.visit('http://localhost:3000')
+        cy.contains('Client Login').click()
+        cy.get('#userNameInput').should('be.empty')
+            .should('have.value', '')
+         cy.get('#passwordInput').should('be.empty')
+            .should('have.value', '')
+        cy.get('#submit').should('be.disabled')
+    })
+
+    it('enters in the wrong format for username and gets error message', () => {
+        cy.get('#userNameInput').type('no')
+        cy.contains('5 characters long')
+    })
+
+    it('enters in the wrong format for password and gets error message', () => {
+        cy.get('#passwordInput').type('nope')
+        cy.contains('7 characters long')
+    })
+})
