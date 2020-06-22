@@ -1,8 +1,10 @@
 import React, {useState, useEffect} from 'react';
 import {Link} from 'react-router-dom'
 import axios from 'axios'
+import * as Yup from 'yup'
 import {StyledForm, StyledErrorDiv, StyledHeader} from './StyledClient'
 import ClientForm from './ClientForm'
+import formSchema from '../../validation/clientLoginFormSchema'
 
 export default function Client(){
 
@@ -29,7 +31,28 @@ export default function Client(){
     const [disabled, setDisabled] = useState(initialDisabled)
 
     const onInputChange = event => {
+        const {name, value} = event.target
 
+        Yup
+            .reach(formSchema, name)
+            .validate(value)
+            .then(() => {
+                setFormErrors({
+                    ...formErrors, 
+                    [name]: ''
+                })
+                setDisabled(false)
+            })
+            .catch(err => {
+                setFormErrors({
+                    ...formErrors,
+                    [name]: err.errors[0]
+                })
+            })
+        setFormValues({
+            ...formValues,
+            [name]: value
+        })
     }
 
     const onSubmit = event => {

@@ -33,7 +33,7 @@ export default function ClientForm(props){
                         name='password'
                     />
                 </label>
-                <StyledButton onSubmit={onSubmit} disabled={disabled} style={{background: "aliceblue"}}>
+                <StyledButton id='submit' onSubmit={onSubmit} disabled={disabled} style={{background: "aliceblue"}}>
                     Login
                 </StyledButton>
             </StyledInnerForm>
