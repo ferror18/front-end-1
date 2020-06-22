@@ -26,9 +26,36 @@ export default function ClientSignup(){
         roleId: ''
     }
 
+    const postSignup = signUp => {
+
+    }
+
+    const initialSignup = []
+    const initialDisabled = true
+
+    const [signup, changeSignup] = useState(initialSignup)
+    const [formValues, setFormValues] = useState(initialFormvalues)
+    const [formErrors, setFormErrors] = useState(initialFormErrors)
+    const [disabled, setDisabled] = useState(initialDisabled)
+
+    const onInputChange = event => {
+
+    }
+
+    const onSubmit = event => {
+
+    }
+
     return (
         <div>
-            <Signup />
+            <h2>Client Signup</h2>
+            <Signup 
+                values={formValues}
+                onInputChange={onInputChange}
+                onSubmit={onSubmit}
+                disabled={disabled}
+                errors={formErrors}
+            />
         </div>
     )
 }

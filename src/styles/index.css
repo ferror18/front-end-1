@@ -19,6 +19,12 @@ input[type=text], select {
   margin: 3%;
 }
 
+label{
+  display: flex;
+  flex-direction: column;
+  margin: 2%;
+}
+
 link{
   margin: 3%;
 }

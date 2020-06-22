@@ -88,7 +88,7 @@ export default function Client(){
 
     return (
         <div>
-            <h1>Client Login</h1>
+            <h2>Client Login</h2>
             <ClientForm 
                 values={formValues}
                 onInputChange={onInputChange}
