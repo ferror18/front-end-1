@@ -9,12 +9,16 @@ body{
 }
 
 a{
-  font-size: 0.75em;
+  font-size: 0.9rem;
   text-decoration: none;
   color: black;
 }
 
 input[type=text], select {
   height: 1.5rem;
+  margin: 3%;
+}
+
+link{
   margin: 3%;
 }
