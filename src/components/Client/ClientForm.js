@@ -1,5 +1,5 @@
 import React from 'react';
-import {StyledForm, StyledButton, StyledInnerForm, StyledErrorDiv, StyledLoginErr} from './StyledClient'
+import {StyledForm, StyledButton, StyledInnerForm, StyledErrorDiv, StyledLoginErr} from '../../styles/StyledClient'
 
 export default function ClientForm(props){
 
