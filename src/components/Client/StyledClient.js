@@ -36,7 +36,6 @@ export const StyledHeader = styled.div`
 
 export const StyledErrorDiv = styled.div`
     color: crimson;
-    background-color: aliceblue;
 `
 
 export const StyledInnerForm = styled.div`
@@ -45,4 +44,14 @@ export const StyledInnerForm = styled.div`
     flex-direction: column;
     align-items: center;
     font-size: 1.25rem;
+`
+
+export const StyledLoginErr = styled.div`
+     border: 1px solid rgb(210, 210, 210);
+    border-radius: 6px;
+    box-shadow: 0px 1px 6px -2px rgb(128, 127, 127);
+    color: crimson;
+    background-color: aliceblue;
+    margin: 5%;
+    padding: 5%;
 `

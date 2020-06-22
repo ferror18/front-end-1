@@ -2,7 +2,7 @@ import React from 'react';
 import {Link, Switch, Route} from 'react-router-dom'
 import './App.css';
 import Client from './components/Client/Client'
-import {StyledButton, StyledHeader} from './components/Client/StyledClient'
+import {StyledHeader} from './components/Client/StyledClient'
 
 function App() {
   return (
