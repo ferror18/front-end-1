@@ -14,7 +14,7 @@ const formSchema = Yup.object().shape({
     lastName: Yup
         .string(),
     email: Yup
-        .string(),
+        .string().email(),
     roleId: Yup
         .string()
         .oneOf(['Instructor, Client'], 'A role is required. Please choose either Instructor or Client')
