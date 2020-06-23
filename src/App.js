@@ -10,8 +10,8 @@ function App() {
     <div className="App">
       <StyledHeader>
         <Link to={'/'}>Home</Link>
-        <Link to={'/client/login'}>Client Login</Link>
-        <Link to={'/client/signup'}>Client Signup</Link>
+        <Link to={'/client/login'}>Login</Link>
+        <Link to={'/client/signup'}>Signup</Link>
       </StyledHeader>
 
       <h1>Anywhere Fitness</h1>
