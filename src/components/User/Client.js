@@ -29,7 +29,7 @@ export default function Client(){
             .catch(err => {
                 setFormValues(initialFormValues)
                 setError("Unfortunately there is no record for that username and password. You can signup or try again.")
-                history.push('/client/login')
+                history.push('/login')
             })
     }
 

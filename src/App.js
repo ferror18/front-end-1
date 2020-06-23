@@ -25,29 +25,17 @@ function App() {
           {getLogo()}
           <h2>Anywhere Fitness</h2>
         </StyledDiv>
-        <Link to={'/'}>Home</Link>
-        <Link to={'/client/login'}>Login</Link>
-        <Link to={'/client/signup'}>Signup</Link>
+        <a href={'https://youthful-curie-92bef1.netlify.app'}>Home</a>
+        <Link to={'/login'}>Login</Link>
+        <Link to={'/signup'}>Signup</Link>
       </StyledHeader>
-      <div>
-        <h3>Fitness anywhere and everywhere</h3>
-        <p>We believe that everyone should have access to great fitness classes. Our mission is to make it as easy as possible for fitness instructors to host a class and fitness enthusiasts to find classes in their are</p>
-      </div>
-      <StyledImgDiv>
-        <img src={wClass} alt='gym class'/>
-      </StyledImgDiv>
-
-
       <Switch>
-        <Route exact path='/client/login'>
+        <Route exact path='/login'>
           <Client />
         </Route>
 
-        <Route exact path='/client/signup'>
+        <Route exact path='/signup'>
           <ClientSignup />
-        </Route>
-
-        <Route path='/'>
         </Route>
       </Switch>
     </div>

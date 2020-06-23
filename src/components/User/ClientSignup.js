@@ -37,7 +37,7 @@ export default function ClientSignup(){
             })
             .finally(() => {
                 setFormValues(initialFormvalues)
-                history.push('/')
+                
             })
     }
 
