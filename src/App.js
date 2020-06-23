@@ -4,6 +4,8 @@ import './styles/App.css';
 import Client from './components/Client/Client'
 import ClientSignup from './components/Client/ClientSignup'
 import {StyledHeader} from './styles/StyledClient'
+import { Nav,  Udash } from './components';
+import { PrivateRoute } from './utils';
 
 function App() {
   return (
@@ -15,6 +17,7 @@ function App() {
       </StyledHeader>
 
       <h1>Anywhere Fitness</h1>
+      <Nav/>
       <Switch>
         <Route exact path='/client/login'>
           <Client />
@@ -22,6 +25,9 @@ function App() {
 
         <Route exact path='/client/signup'>
           <ClientSignup />
+        </Route>
+        <Route>
+        <PrivateRoute exact path="/udash" component={Udash} />
         </Route>
 
         <Route path='/'>
