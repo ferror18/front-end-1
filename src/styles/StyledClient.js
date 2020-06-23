@@ -3,7 +3,7 @@ import styled from 'styled-components'
 
 export const StyledButton = styled.button`
     width: 20%;
-    background-color: #84C3E0;
+    background-color: #028AF2;
     font-size: 1rem;
     margin: 5% 0 0 0;
 
@@ -25,13 +25,15 @@ export const StyledForm = styled.form`
     box-shadow: 0px 1px 6px -2px rgb(128, 127, 127);
     margin: 5%;
     padding: 5%;
-    background-color: #84C3E0;
+    background-color: #028AF2;
 `
 
 export const StyledHeader = styled.div`
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-around;
     align-items: center;
+    background:  #028AF2;
+    height: 4rem;
 `
 
 export const StyledErrorDiv = styled.div`
@@ -54,4 +56,16 @@ export const StyledLoginErr = styled.div`
     background-color: aliceblue;
     margin: 5%;
     padding: 5%;
+`
+
+export const StyledDiv = styled.div`
+    display: flex;
+    color: white;
+    align-items: center;
+    width: 30%;
+`
+
+export const StyledImgDiv = styled.div`
+    display: flex;
+    justify-content: space-between;
 `
