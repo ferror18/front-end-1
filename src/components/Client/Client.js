@@ -56,7 +56,6 @@ export default function Client(){
                     ...formErrors, 
                     [name]: ''
                 })
-                setDisabled(false)
             })
             .catch(err => {
                 setFormErrors({
@@ -83,7 +82,9 @@ export default function Client(){
     }
 
     useEffect(() => {
-
+        if(formValues.userName !== '' && formValues.password !== ''){
+            setDisabled(false)
+        }
     }, [formValues])
 
     return (

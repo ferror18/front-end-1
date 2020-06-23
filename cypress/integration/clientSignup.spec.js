@@ -43,3 +43,70 @@ describe('Enters in data input and gets appropiate errors', () => {
         cy.contains('A role is required.')
     })
 })
+
+describe('Able to enter in data correctly', () => {
+    it('navigates to the page', () => {
+        cy.visit('http://localhost:3000')
+        cy.contains('Client Signup').click()
+    })
+
+    it('signup button is disabled', () => {
+        cy.get('#signup').should('be.disabled')
+    })
+
+    it('enters data into the username field', () => {
+        cy.get('#userNameInput').type('SomeName')
+            .should('have.value', 'SomeName')
+    })
+
+    it('signup button is disabled', () => {
+        cy.get('#signup').should('be.disabled')
+    })
+
+    it('enters data into the password field', () => {
+        cy.get('#passwordInput').type('password')
+            .should('have.value', 'password')
+    })
+
+    it('signup button is disabled', () => {
+        cy.get('#signup').should('be.disabled')
+    })
+
+    it('enters data into the first name field', () => {
+        cy.get('#firstNameInput').type('First Name')
+            .should('have.value', 'First Name')
+    })
+
+    it('signup button is disabled', () => {
+        cy.get('#signup').should('be.disabled')
+    })
+
+    it('enters data into the last name field', () => {
+        cy.get('#lastNameInput').type('Last Name')
+            .should('have.value', 'Last Name')
+    })
+
+    it('signup button is disabled', () => {
+        cy.get('#signup').should('be.disabled')
+    })
+
+    it('enters data into the email field', () => {
+        cy.get('#emailInput').type('anemail@gmail.com')
+            .should('have.value', 'anemail@gmail.com')
+    })
+
+    it('signup button is disabled', () => {
+        cy.get('#signup').should('be.disabled')
+    })
+
+    it('selects a role', () => {
+        cy.get('#roleInput').select('Instructor')
+            .should('have.value', 'Instructor')
+    })
+
+    it('signup button is enabled', () => {
+        cy.get('#signup').should('be.enabled')
+    })
+
+
+})

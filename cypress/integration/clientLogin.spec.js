@@ -93,7 +93,7 @@ describe('Enters in valid input and submits the data for an unknown user', () =>
     })
 
     it('enters in data form for unknown user ', () => {
-        cy.get('#userNameInput').type('namename')
+        cy.get('#userNameInput').type('NameName')
         cy.get('#passwordInput').type('password')
         cy.get('#login').click()
         cy.contains('Unfortunately')
