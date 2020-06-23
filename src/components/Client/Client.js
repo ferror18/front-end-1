@@ -22,7 +22,6 @@ export default function Client(){
     const postLogin = loginTry => {
         axios.post('https://lambda-anywhere-fitness.herokuapp.com/api/auth/login', loginTry)
             .then(res => {
-                console.log('then')
                 console.log(res.data.message)
                 history.push('/')
             })
@@ -35,11 +34,9 @@ export default function Client(){
             })
     }
 
-    const initialLogin = []
     const initialError = '';
     const initialDisabled = true;
 
-    const [login, changeLogin] = useState(initialLogin);
     const [formValues, setFormValues] = useState(initialFormValues)
     const [formErrors, setFormErrors] = useState(initialFormErrors)
     const [disabled, setDisabled] = useState(initialDisabled)
@@ -56,7 +53,6 @@ export default function Client(){
                     ...formErrors, 
                     [name]: ''
                 })
-                setDisabled(false)
             })
             .catch(err => {
                 setFormErrors({
@@ -83,12 +79,14 @@ export default function Client(){
     }
 
     useEffect(() => {
-
+        if(formValues.userName !== '' && formValues.password !== ''){
+            setDisabled(false)
+        }
     }, [formValues])
 
     return (
         <div>
-            <h1>Client Login</h1>
+            <h2>Client Login</h2>
             <ClientForm 
                 values={formValues}
                 onInputChange={onInputChange}

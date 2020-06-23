@@ -2,6 +2,7 @@ import React from 'react';
 import {Link, Switch, Route} from 'react-router-dom'
 import './styles/App.css';
 import Client from './components/Client/Client'
+import ClientSignup from './components/Client/ClientSignup'
 import {StyledHeader} from './styles/StyledClient'
 
 function App() {
@@ -20,7 +21,7 @@ function App() {
         </Route>
 
         <Route exact path='/client/signup'>
-          
+          <ClientSignup />
         </Route>
 
         <Route path='/'>
