@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {useHistory} from 'react-router-dom'
+import {useHistory, Redirect} from 'react-router-dom'
 import axios from 'axios'
 import * as Yup from 'yup'
 import Signup from './ClientSignupForm'
@@ -29,15 +29,22 @@ export default function ClientSignup(){
     const postSignup = signUp => {
         axios.post('https://lambda-anywhere-fitness.herokuapp.com/api/auth/register', signUp)
             .then(res => {
+                setFormValues(initialFormvalues)
                 console.log(res.data)
+                if(res.data.roleId === 1){
+                    return <Redirect to={{
+                        pathname: `/instructor/${res.data.roleId}`
+                    }}/>
+                } else {
+                    return <Redirect to={{
+                        pathname: `/client/${res.data.roleId}`
+                    }}/>
+                }
             })
             .catch(err => {
+                setFormValues(initialFormvalues)
                 console.log(err)
                 console.log(err.message)
-            })
-            .finally(() => {
-                setFormValues(initialFormvalues)
-                history.push('/')
             })
     }
 
@@ -92,7 +99,7 @@ export default function ClientSignup(){
         if(formValues.roleId === 'Instructor'){
             return 1
         } else {
-            return 1
+            return 2
         }
     }
 

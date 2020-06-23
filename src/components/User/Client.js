@@ -23,8 +23,17 @@ export default function Client(){
         axios.post('https://lambda-anywhere-fitness.herokuapp.com/api/auth/login', loginTry)
             .then(res => {
                 setFormValues(initialFormValues)
-                console.log(res.data.message)
-                history.push('/')
+                console.log(res.data.user.roleId)
+                if(res.data.user.roleId === 1){
+                    console.log(res)
+                    let id = res.data.user.id;
+                    console.log(id)
+                    history.push('/instructor/profile')
+                }
+                else {
+                    history.push('/')
+                }
+                
             })
             .catch(err => {
                 setFormValues(initialFormValues)

@@ -1,11 +1,17 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {Link, Switch, Route} from 'react-router-dom'
 import './styles/App.css';
 import Client from './components/User/Client'
 import ClientSignup from './components/User/ClientSignup'
+import InsProfile from './components/Instructor/InsProfile'
 import {StyledHeader} from './styles/StyledClient'
 
 function App() {
+
+  const initialId = ''
+
+  const [id, setId] = useState(initialId)
+
   return (
     <div className="App">
       <StyledHeader>
@@ -22,6 +28,10 @@ function App() {
 
         <Route exact path='/signup'>
           <ClientSignup />
+        </Route>
+
+        <Route path='/instructor/profile'>
+          <InsProfile />
         </Route>
 
         <Route path='/'>
