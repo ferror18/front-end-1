@@ -104,7 +104,7 @@ export default function ClientSignup(){
 
     return (
         <div>
-            <h2>Client Signup</h2>
+            <h2>Signup</h2>
             <Signup 
                 values={formValues}
                 onInputChange={onInputChange}

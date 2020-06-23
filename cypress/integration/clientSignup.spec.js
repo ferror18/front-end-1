@@ -2,10 +2,10 @@
 describe('Navigates to client signup page and loads', () => {
     it('navigates to the site and then to client signup page', () => {
         cy.visit('http://localhost:3000')
-        cy.contains('Client Signup').click()
+        cy.contains('Signup').click()
     })
 
-    it('loads client signup page correctly', () => {
+    it('loads signup page correctly', () => {
         cy.contains('Username:')
         cy.contains('Password:')
         cy.contains('First Name:')
@@ -19,7 +19,7 @@ describe('Navigates to client signup page and loads', () => {
 describe('Enters in data input and gets appropiate errors', () => {
     it('navigates to the page', () => {
         cy.visit('http://localhost:3000')
-        cy.contains('Client Signup').click()
+        cy.contains('Signup').click()
     })
 
     it('enters wrong format for username and gets appropiate error message', () => {
@@ -47,7 +47,7 @@ describe('Enters in data input and gets appropiate errors', () => {
 describe('Able to enter in data correctly', () => {
     it('navigates to the page', () => {
         cy.visit('http://localhost:3000')
-        cy.contains('Client Signup').click()
+        cy.contains('Signup').click()
     })
 
     it('signup button is disabled', () => {
@@ -113,14 +113,14 @@ describe('Able to enter in data correctly', () => {
 
 describe('Signs up a new user', () => {
     it('navigates to the client signup page', () => {
-        cy.visit('http://localhost:3000/client/signup')
+        cy.visit('http://localhost:3000/signup')
     })
 
     it('enters in the data', () => {
-        cy.get('#userNameInput').type('Aname1234')
+        cy.get('#userNameInput').type('Aname123456')
         cy.get('#passwordInput').type('password')
-        cy.get('#firstNameInput').type('AFirst-Name123')
-        cy.get('#lastNameInput').type('Last-Name123')
+        cy.get('#firstNameInput').type('AFirst-Name1234')
+        cy.get('#lastNameInput').type('Last-Name1234')
         cy.get('#emailInput').type('anemail@gmail.com')
         cy.get('#roleInput').select('Client')
     })

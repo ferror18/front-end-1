@@ -22,15 +22,13 @@ export default function Client(){
     const postLogin = loginTry => {
         axios.post('https://lambda-anywhere-fitness.herokuapp.com/api/auth/login', loginTry)
             .then(res => {
+                setFormValues(initialFormValues)
                 console.log(res.data.message)
                 history.push('/')
             })
             .catch(err => {
-                setError("Unfortunately there is no record for that username and password. You can signup or try again.")
-                history.push('/client/login')
-            })
-            .finally( () => {
                 setFormValues(initialFormValues)
+                setError("Unfortunately there is no record for that username and password. You can signup or try again.")
             })
     }
 
@@ -74,7 +72,6 @@ export default function Client(){
             password: formValues.password.trim()
         }
 
-        console.log(loginAttempt)
         postLogin(loginAttempt)
     }
 
@@ -86,7 +83,7 @@ export default function Client(){
 
     return (
         <div>
-            <h2>Client Login</h2>
+            <h2>Login</h2>
             <ClientForm 
                 values={formValues}
                 onInputChange={onInputChange}

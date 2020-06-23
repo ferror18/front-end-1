@@ -8,32 +8,31 @@ describe('Navigates to home page and loads', () => {
 
     it('loads page correctly', () => {
         cy.contains('Anywhere Fitness')
-        cy.contains('Client Login')
-        cy.contains('Client Signup')
+        cy.contains('Login')
+        cy.contains('Signup')
     })
 })
 
-describe('Clicks on Client page button and loads Client page', () => {
-    it('navigates to the site and clicks the client button', () => {
+describe('Clicks on Login page button and loads Login page', () => {
+    it('navigates to the site and clicks the Login button', () => {
         cy.visit('http://localhost:3000')
-        cy.contains('Client Login').click()
+        cy.contains('Login').click()
     }) 
 
-    it('Client page loads correctly', () => {
-        cy.contains('Client Login')
+    it('Login page loads correctly', () => {
+        cy.contains('Login')
         cy.contains('Anywhere Fitness')
         cy.contains('UserName')
         cy.contains('Password')
         cy.contains('Home')
-        cy.contains('Client Login')
-        cy.contains('Client Signup')
+        cy.contains('Signup')
     })
 })
 
 describe('Able to input data into the form', () => {
-    it('navigates to client login page', () => {
+    it('navigates to Login login page', () => {
         cy.visit('http://localhost:3000')
-        cy.contains('Client Login').click()
+        cy.contains('Login').click()
     })
 
     it('all input fields are blank and button the lobin is disabled', () => {
@@ -60,9 +59,9 @@ describe('Able to input data into the form', () => {
 })
 
 describe('Error messages appear if incorrect format of username and password are entered', () => {
-    it('navigates to client login page and all input fields are blank', () => {
+    it('navigates to login page and all input fields are blank', () => {
         cy.visit('http://localhost:3000')
-        cy.contains('Client Login').click()
+        cy.contains('Login').click()
         cy.get('#userNameInput').should('be.empty')
             .should('have.value', '')
          cy.get('#passwordInput').should('be.empty')
@@ -82,9 +81,9 @@ describe('Error messages appear if incorrect format of username and password are
 })
 
 describe('Enters in valid input and submits the data for an unknown user', () => {
-    it('navigates to client login page and all input fields are blank', () => {
+    it('navigates to  login page and all input fields are blank', () => {
         cy.visit('http://localhost:3000')
-        cy.contains('Client Login').click()
+        cy.contains('Login').click()
         cy.get('#userNameInput').should('be.empty')
             .should('have.value', '')
          cy.get('#passwordInput').should('be.empty')
@@ -93,7 +92,7 @@ describe('Enters in valid input and submits the data for an unknown user', () =>
     })
 
     it('enters in data form for unknown user ', () => {
-        cy.get('#userNameInput').type('NameName')
+        cy.get('#userNameInput').type('NameNameName')
         cy.get('#passwordInput').type('password')
         cy.get('#login').click()
         cy.contains('Unfortunately')
@@ -101,9 +100,9 @@ describe('Enters in valid input and submits the data for an unknown user', () =>
 })
 
 describe('Enters in valid input and submits data for a konwn user', () => {
-    it('navigates to client login page and all input fields are blank', () => {
+    it('navigates to login page and all input fields are blank', () => {
         cy.visit('http://localhost:3000')
-        cy.contains('Client Login').click()
+        cy.contains('Login').click()
         cy.get('#userNameInput').should('be.empty')
             .should('have.value', '')
          cy.get('#passwordInput').should('be.empty')
