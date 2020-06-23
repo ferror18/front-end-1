@@ -1,8 +1,8 @@
 import React from 'react';
 import {Link, Switch, Route} from 'react-router-dom'
 import './styles/App.css';
-import Client from './components/Client/Client'
-import ClientSignup from './components/Client/ClientSignup'
+import Client from './components/User/Client'
+import ClientSignup from './components/UserClientSignup'
 import {StyledHeader} from './styles/StyledClient'
 
 function App() {
