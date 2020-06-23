@@ -64,8 +64,3 @@ export const StyledDiv = styled.div`
     align-items: center;
     width: 30%;
 `
-
-export const StyledImgDiv = styled.div`
-    display: flex;
-    justify-content: space-between;
-`

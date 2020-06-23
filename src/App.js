@@ -2,10 +2,9 @@ import React from 'react';
 import {Link, Switch, Route} from 'react-router-dom'
 import Client from './components/User/Client'
 import ClientSignup from './components/User/ClientSignup'
-import {StyledHeader, StyledDiv, StyledImgDiv} from './styles/StyledClient'
+import ClassListing from './components/ClassListing/ClassListing'
+import {StyledHeader, StyledDiv} from './styles/StyledClient'
 import logo from './UI/Alex/assets/logo.svg'
-import wClass from './styles/wClass.jpeg'
-import wClass2 from './styles/wClass2.jpeg'
 
 
 function App() {
@@ -26,11 +25,17 @@ function App() {
           <h2>Anywhere Fitness</h2>
         </StyledDiv>
         <a href={'https://youthful-curie-92bef1.netlify.app'}>Home</a>
+        <Link to={'/class'}>Class List</Link>
         <Link to={'/login'}>Login</Link>
         <Link to={'/signup'}>Signup</Link>
       </StyledHeader>
       
       <Switch>
+
+        <Route exact path='/class'>
+          <ClassListing />
+        </Route>
+
         <Route exact path='/login'>
           <Client />
         </Route>
