@@ -29,6 +29,7 @@ function App() {
         <Link to={'/login'}>Login</Link>
         <Link to={'/signup'}>Signup</Link>
       </StyledHeader>
+      
       <Switch>
         <Route exact path='/login'>
           <Client />
