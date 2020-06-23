@@ -2,7 +2,7 @@ import React from 'react';
 import {Link, Switch, Route} from 'react-router-dom'
 import './styles/App.css';
 import Client from './components/User/Client'
-import ClientSignup from './components/UserClientSignup'
+import ClientSignup from './components/User/ClientSignup'
 import {StyledHeader} from './styles/StyledClient'
 
 function App() {
