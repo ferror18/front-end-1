@@ -110,3 +110,22 @@ describe('Able to enter in data correctly', () => {
 
 
 })
+
+describe('Signs up a new user', () => {
+    it('navigates to the client signup page', () => {
+        cy.visit('http://localhost:3000/client/signup')
+    })
+
+    it('enters in the data', () => {
+        cy.get('#userNameInput').type('Aname1234')
+        cy.get('#passwordInput').type('password')
+        cy.get('#firstNameInput').type('AFirst-Name123')
+        cy.get('#lastNameInput').type('Last-Name123')
+        cy.get('#emailInput').type('anemail@gmail.com')
+        cy.get('#roleInput').select('Client')
+    })
+
+    it('submits the form', ()=> {
+        cy.get('#signup').click()
+    })
+})

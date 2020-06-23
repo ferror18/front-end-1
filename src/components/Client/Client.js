@@ -22,7 +22,6 @@ export default function Client(){
     const postLogin = loginTry => {
         axios.post('https://lambda-anywhere-fitness.herokuapp.com/api/auth/login', loginTry)
             .then(res => {
-                console.log('then')
                 console.log(res.data.message)
                 history.push('/')
             })
@@ -35,11 +34,9 @@ export default function Client(){
             })
     }
 
-    const initialLogin = []
     const initialError = '';
     const initialDisabled = true;
 
-    const [login, changeLogin] = useState(initialLogin);
     const [formValues, setFormValues] = useState(initialFormValues)
     const [formErrors, setFormErrors] = useState(initialFormErrors)
     const [disabled, setDisabled] = useState(initialDisabled)

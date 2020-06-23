@@ -27,13 +27,22 @@ export default function ClientSignup(){
     }
 
     const postSignup = signUp => {
-
+        axios.post('https://lambda-anywhere-fitness.herokuapp.com/api/auth/register', signUp)
+            .then(res => {
+                console.log(res.data)
+            })
+            .catch(err => {
+                console.log(err)
+                console.log(err.message)
+            })
+            .finally(() => {
+                setFormValues(initialFormvalues)
+                history.push('/')
+            })
     }
 
-    const initialSignup = []
     const initialDisabled = true
 
-    const [signup, changeSignup] = useState(initialSignup)
     const [formValues, setFormValues] = useState(initialFormvalues)
     const [formErrors, setFormErrors] = useState(initialFormErrors)
     const [disabled, setDisabled] = useState(initialDisabled)
@@ -64,7 +73,27 @@ export default function ClientSignup(){
     }
 
     const onSubmit = event => {
+        event.preventDefault()
 
+        const newClient = {
+            username: formValues.userName,
+            password: formValues.password,
+            firstName: formValues.firstName,
+            lastName: formValues.lastName,
+            email: formValues.email,
+            roleId: checkRoleId()
+        }
+
+        
+        postSignup(newClient)
+    }
+
+    const checkRoleId = () => {
+        if(formValues.roleId === 'Instructor'){
+            return 1
+        } else {
+            return 1
+        }
     }
 
     useEffect(() => {
