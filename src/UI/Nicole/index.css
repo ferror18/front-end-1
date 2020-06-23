@@ -107,6 +107,13 @@
     font-size: 1.6rem;
     padding: 20px;
   }
+  .backgroundphoto {
+    height:40vh;
+    background-image:url('https://images.pexels.com/photos/949134/pexels-photo-949134.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260');
+    background-size:cover;
+    background-position:bottom;
+    background-attachment:fixed;
+  }
   .home .header-section {
     width: 100%;
     padding-bottom: 20px;
