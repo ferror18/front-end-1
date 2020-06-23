@@ -1,30 +1,42 @@
 import React from 'react';
 import {Link, Switch, Route} from 'react-router-dom'
-import './styles/App.css';
 import Client from './components/User/Client'
-import ClientSignup from './components/UserClientSignup'
-import {StyledHeader} from './styles/StyledClient'
+import ClientSignup from './components/User/ClientSignup'
+import {StyledHeader, StyledDiv, StyledImgDiv} from './styles/StyledClient'
+import logo from './UI/Alex/assets/logo.svg'
+import wClass from './styles/wClass.jpeg'
+import wClass2 from './styles/wClass2.jpeg'
+
 
 function App() {
+
+  const getLogo = () => {
+    if(logo){
+      return (<img id='logo' src={logo} alt='logo'/>)
+    }else {
+      return (<div></div>)
+    }
+  }
+
   return (
     <div className="App">
       <StyledHeader>
-        <Link to={'/'}>Home</Link>
-        <Link to={'/client/login'}>Login</Link>
-        <Link to={'/client/signup'}>Signup</Link>
+        <StyledDiv>
+          {getLogo()}
+          <h2>Anywhere Fitness</h2>
+        </StyledDiv>
+        <a href={'https://youthful-curie-92bef1.netlify.app'}>Home</a>
+        <Link to={'/login'}>Login</Link>
+        <Link to={'/signup'}>Signup</Link>
       </StyledHeader>
-
-      <h1>Anywhere Fitness</h1>
+      
       <Switch>
-        <Route exact path='/client/login'>
+        <Route exact path='/login'>
           <Client />
         </Route>
 
-        <Route exact path='/client/signup'>
+        <Route exact path='/signup'>
           <ClientSignup />
-        </Route>
-
-        <Route path='/'>
         </Route>
       </Switch>
     </div>
