@@ -1,19 +1,28 @@
-import React from "react"
+import React, { useState } from "react"
 import { connect } from "react-redux"
+import { deleteUser, logOut } from "../actions"
+import { useHistory } from "react-router-dom";
+import { Settings } from "../components";
 
-const Udash = ({deleteUser, roleId})=>{
-
+const Udash = ({ roleId, logOut, deleteUser, id})=>{
+    const history = useHistory()
+    const logOutHandler = event => {
+        logOut()
+        history.push('/')
+    }
     return (
         <div>
         <h1>User Dashboard</h1>
-        <button onClick={()=>{deleteUser(roleId)}}>DELETE MY ACCOUNT</button>
+        <button onClick={logOutHandler}>LOG OUT</button>
+        <Settings/>
         </div>
     )
 }
 
-cosnt mapStateToProps = (state) => {
+const mapStateToProps = (state) => {
     return {
+        id: state.id,
         roleId: state.roleId
     }
 }
-export default connect(mapStateToProps,{ deleteUser })(Udash)
+export default connect(mapStateToProps,{ deleteUser, logOut })(Udash)

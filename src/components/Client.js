@@ -7,7 +7,7 @@ import formSchema from '../validation/clientLoginFormSchema'
 import { connect } from "react-redux"
 import { loginUser } from "../actions";
 
-function Client({loginUser, roleId}){
+function Client({loginUser, id}){
 
     const history = useHistory();
 
@@ -73,7 +73,6 @@ function Client({loginUser, roleId}){
         // console.log(loginAttempt)
         loginUser(loginAttempt)
         setFormValues(initialFormValues)
-        history.push('/dashboard')
     }
 
     useEffect(() => {
@@ -81,7 +80,12 @@ function Client({loginUser, roleId}){
             setDisabled(false)
         }
     }, [formValues])
-
+    useEffect(()=>{
+        console.log(id, localStorage.getItem("token"), '<----THIS ARE THE CLIENT UE---->');
+        if(localStorage.getItem('token') !== null){
+            history.push("/dashboard")
+        }
+    }, [id])
     return (
         <div>
             <h1>Login</h1>
@@ -105,7 +109,8 @@ const mapStateToProps = (state) => {
         firstName: state.firstName,
         lastName: state.lastName,
         email: state.email,
-        roleId: state.roleId
+        roleId: state.roleId,
+        id: state.id
     }
   }
   

@@ -11,7 +11,7 @@ const PrivateRoute = ({ roleId, Udash, Idash, ...rest }) => {
         // ) : (
         //   <Redirect to="/" />
         // )
-        if (localStorage.getItem('token')) {
+        if (localStorage.getItem('token')!== null) {
             if (roleId === 2) {
               console.log(roleId, 'USER');
               return <Udash {...rest} />

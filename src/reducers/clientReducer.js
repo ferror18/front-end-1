@@ -7,16 +7,35 @@ import {
   USER_PUT_FAILURE,
   USER_DELETE_START,
   USER_DELETE_SUCCESS,
-  USER_DELETE_FAILURE
+  USER_DELETE_FAILURE,
+  USER_LOG_OUT_START,
+  USER_LOG_OUT_SUCCESS
  } from "../actions";
   // 1. create initial state
   const initialState = {
+    //User State
     username: '',
     password: '',
     firstName: '',
     lastName: '',
     email: '',
-    roleId: ''
+    id: '',
+    roleId: null,
+    // Class State
+    title: '',
+    instructorId: '',
+    categoryId: '',
+    scheduleTime: '',
+    address: '',
+    city: '',
+    state: '',
+    zipCode: '',
+    // Category State
+    name: '',
+    description: '',
+    // utility state
+    error: ''
+
 }
   
   // 2. pass state
@@ -29,10 +48,16 @@ import {
           error: ''
         }
       case USER_POST_SUCCESS:
-        console.log(action.type, action.payload);
+        console.log(action.type, action.payload, state.token);
         return {
           ...state,
+          // username: action.payload.username,
+          // password: action.payload.password,
+          // firstName: action.payload.firstName,
+          // lastName: action.payload.lastName,
+          // email: action.payload.email,
           roleId: action.payload.roleId,
+          id: action.payload.id,
           error: '',
         }
       case USER_POST_FAILURE:
@@ -69,7 +94,7 @@ import {
       case USER_DELETE_SUCCESS:
         console.log(action.type, action.payload);
         return {
-          ...state,
+          ...initialState,
           error: '',
         }
       case USER_DELETE_FAILURE:
@@ -77,6 +102,15 @@ import {
         return {
           ...state,
         }
+      case USER_LOG_OUT_START:
+        console.log(action.type, action.payload);
+        return {
+          ...state,
+          error: '',
+        }
+      case USER_LOG_OUT_SUCCESS:
+        console.log(action.type, action.payload);
+        return initialState 
       default:
         return state
     }

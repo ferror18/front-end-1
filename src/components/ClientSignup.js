@@ -7,7 +7,7 @@ import formSchema from '../validation/clientSignupFormSchema'
 import { connect } from "react-redux"
 import { createUser } from "../actions";
 
-function ClientSignup({ createUser }){
+function ClientSignup({ createUser, error, id }){
     const history = useHistory(); 
 
     const initialFormvalues = {
@@ -27,22 +27,6 @@ function ClientSignup({ createUser }){
         email: '',
         roleId: ''
     }
-
-    // const postSignup = signUp => {
-    //     axios.post('https://lambda-anywhere-fitness.herokuapp.com/api/auth/register', signUp)
-    //         .then(res => {
-    //             console.log(res.data)
-    //         })
-    //         .catch(err => {
-    //             console.log(err)
-    //             console.log(err.message)
-    //         })
-    //         .finally(() => {
-    //             setFormValues(initialFormvalues)
-                
-    //         })
-    // }
-
     const initialDisabled = true
 
     const [formValues, setFormValues] = useState(initialFormvalues)
@@ -103,7 +87,12 @@ function ClientSignup({ createUser }){
             setDisabled(false)
         }
     }, [formValues])
-
+    useEffect(()=>{
+        console.log(error, '<----THIS ARE THE PROPS UE---->');
+        if(id !== '' && error === ''){
+            history.push("/dashboard")
+        }
+    }, [id])
     return (
         <div>
             <h1>Signup</h1>
@@ -125,7 +114,9 @@ const mapStateToProps = (state) => {
         firstName: state.firstName,
         lastName: state.lastName,
         email: state.email,
-        roleId: state.roleId
+        roleId: state.roleId,
+        id: state.id,
+        error: state.error
     }
   }
   

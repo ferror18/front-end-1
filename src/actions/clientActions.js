@@ -13,27 +13,67 @@ export const USER_PUT_FAILURE = 'USER_PUT_FAILURE'
 export const USER_DELETE_START = 'USER_DELETE_START'
 export const USER_DELETE_SUCCESS = 'USER_DELETE_SUCCESS'
 export const USER_DELETE_FAILURE = 'USER_DELETE_FAILURE'
+
+export const USER_UPDATE_START = 'USER_UPDATE_START'
+export const USER_UPDATE_SUCCESS = 'USER_UPDATE_SUCCESS'
+export const USER_UPDATE_FAILURE = 'USER_UPDATE_FAILURE'
+
+export const USER_LOG_OUT_START = 'USER_LOG_OUT_START'
+export const USER_LOG_OUT_SUCCESS = 'USER_LOG_OUT_SUCCESS'
+
+export const CLASS_POST_START = 'CLASS_POST_START'
+export const CLASS_POST_SUCCESS = 'CLASS_POST_SUCCESS'
+export const CLASS_POST_FAILURE = 'CLASS_POST_FAILURE'
+
+export const CLASS_PUT_START = 'CLASS_PUT_START'
+export const CLASS_PUT_SUCCESS = 'CLASS_PUT_SUCCESS'
+export const CLASS_PUT_FAILURE = 'CLASS_PUT_FAILURE'
+
+export const CLASS_DELETE_START = 'CLASS_DELETE_START'
+export const CLASS_DELETE_SUCCESS = 'CLASS_DELETE_SUCCESS'
+export const CLASS_DELETE_FAILURE = 'CLASS_DELETE_FAILURE'
+
+export const CLASS_UPDATE_START = 'CLASS_UPDATE_START'
+export const CLASS_UPDATE_SUCCESS = 'CLASS_UPDATE_SUCCESS'
+export const CLASS_UPDATE_FAILURE = 'CLASS_UPDATE_FAILURE'
+
+export const CATEGORY_POST_START = 'CATEGORY_POST_START'
+export const CATEGORY_POST_SUCCESS = 'CATEGORY_POST_SUCCESS'
+export const CATEGORY_POST_FAILURE = 'CATEGORY_POST_FAILURE'
+
+export const CATEGORY_PUT_START = 'CATEGORY_PUT_START'
+export const CATEGORY_PUT_SUCCESS = 'CATEGORY_PUT_SUCCESS'
+export const CATEGORY_PUT_FAILURE = 'CATEGORY_PUT_FAILURE'
+
+export const CATEGORY_DELETE_START = 'CATEGORY_DELETE_START'
+export const CATEGORY_DELETE_SUCCESS = 'CATEGORY_DELETE_SUCCESS'
+export const CATEGORY_DELETE_FAILURE = 'CATEGORY_DELETE_FAILURE'
+
+export const CATEGORY_UPDATE_START = 'CATEGORY_UPDATE_START'
+export const CATEGORY_UPDATE_SUCCESS = 'CATEGORY_UPDATE_SUCCESS'
+export const CATEGORY_UPDATE_FAILURE = 'CATEGORY_UPDATE_FAILURE'
+
+// USER ACTIONS
 export const createUser = (newUser) => (dispatch) => {
     dispatch({ type: USER_POST_START })
     // console.log('store connected');
     axios.post(`${BASE_URL}auth/register`, newUser)
             .then(res => {
                 // console.log(res.data)
-                dispatch({ type: USER_POST_SUCCESS, payload: res.data })
+                dispatch({ type: USER_POST_SUCCESS, payload: {roleId:'', id:'placeholder'} })
             })
             .catch(err => {
                 // console.log(err)
                 // console.log(err.message)
-                dispatch({ type: USER_POST_FAILURE, payload: err.response })
+                dispatch({ type: USER_POST_FAILURE, payload: err.message })
             })
   }
 export const loginUser = (userCredentials) => (dispatch) => {
   dispatch({ type: USER_POST_START })
-  // console.log(userCredentials);
-  
+  console.log(userCredentials);
   axiosWithAuth().post(`auth/login`, userCredentials)
             .then(res => {
-                // console.log(res)
+                console.log(res)
                 localStorage.setItem("token", res.data.token)
                 console.log(localStorage.getItem('token'));
                 dispatch({ type: USER_POST_SUCCESS, payload: res.data.user })
@@ -46,9 +86,32 @@ export const loginUser = (userCredentials) => (dispatch) => {
                 // history.push('/login')
             })
 }
+export const logOut = () => (dispatch) => {
+  dispatch({ type: USER_LOG_OUT_START})
+  localStorage.clear()
+  console.log(localStorage.getItem('token'));
+  dispatch({ type: USER_LOG_OUT_SUCCESS})
+}
 export const deleteUser = (userId) => (dispatch) => {
   dispatch({type: USER_DELETE_START})
   axiosWithAuth().delete('user', userId)
-  .then(res=>{console.log(res), dispatch({type: USER_DELETE_SUCCESS, payload: res})})
-  .catch(err=>console.log(err), dispatch({type: USER_DELETE_FAILURE, payload: err}))
+  .then((res)=>{console.log(res);localStorage.clear(); dispatch({type: USER_DELETE_SUCCESS, payload: res}); })
+  .catch((err)=>{console.log(err); dispatch({type: USER_DELETE_FAILURE, payload: err})})
 }
+export const updateUser = (newUser) => (dispatch) => {
+  dispatch({type: USER_UPDATE_START})
+  console.log(newUser);
+  
+  axiosWithAuth().put('user', newUser)
+  .then((res)=>{console.log(res); dispatch({type: USER_UPDATE_SUCCESS, payload: res})})
+  .catch((err)=>{console.log(err); dispatch({type: USER_UPDATE_FAILURE, payload: err})})
+}
+
+// CLASS ACTIONS
+//general
+
+//user
+export const createClass = (id) => (dispatch) => {
+  
+}
+//instructor
