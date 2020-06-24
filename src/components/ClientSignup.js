@@ -3,9 +3,11 @@ import {useHistory} from 'react-router-dom'
 import axios from 'axios'
 import * as Yup from 'yup'
 import Signup from './ClientSignupForm'
-import formSchema from '../../validation/clientSignupFormSchema'
+import formSchema from '../validation/clientSignupFormSchema'
+import { connect } from "react-redux"
+import { createUser } from "../actions";
 
-export default function ClientSignup(){
+function ClientSignup({ createUser, error, id }){
     const history = useHistory(); 
 
     const initialFormvalues = {
@@ -25,22 +27,6 @@ export default function ClientSignup(){
         email: '',
         roleId: ''
     }
-
-    const postSignup = signUp => {
-        axios.post('https://lambda-anywhere-fitness.herokuapp.com/api/auth/register', signUp)
-            .then(res => {
-                console.log(res.data)
-            })
-            .catch(err => {
-                console.log(err)
-                console.log(err.message)
-            })
-            .finally(() => {
-                setFormValues(initialFormvalues)
-                
-            })
-    }
-
     const initialDisabled = true
 
     const [formValues, setFormValues] = useState(initialFormvalues)
@@ -85,7 +71,7 @@ export default function ClientSignup(){
         }
 
         
-        postSignup(newClient)
+        createUser(newClient)
     }
 
     const checkRoleId = () => {
@@ -101,7 +87,12 @@ export default function ClientSignup(){
             setDisabled(false)
         }
     }, [formValues])
-
+    useEffect(()=>{
+        console.log(error, '<----THIS ARE THE PROPS UE---->');
+        if(id !== '' && error === ''){
+            history.push("/dashboard")
+        }
+    }, [id])
     return (
         <div>
             <h1>Signup</h1>
@@ -115,3 +106,18 @@ export default function ClientSignup(){
         </div>
     )
 }
+
+const mapStateToProps = (state) => {
+    return {
+        userName: state.userName,
+        password: state.password,
+        firstName: state.firstName,
+        lastName: state.lastName,
+        email: state.email,
+        roleId: state.roleId,
+        id: state.id,
+        error: state.error
+    }
+  }
+  
+  export default connect(mapStateToProps, { createUser })(ClientSignup)

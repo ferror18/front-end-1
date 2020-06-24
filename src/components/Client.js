@@ -3,9 +3,11 @@ import {useHistory} from 'react-router-dom'
 import axios from 'axios'
 import * as Yup from 'yup'
 import ClientForm from './ClientForm'
-import formSchema from '../../validation/clientLoginFormSchema'
+import formSchema from '../validation/clientLoginFormSchema'
+import { connect } from "react-redux"
+import { loginUser } from "../actions";
 
-export default function Client(){
+function Client({loginUser, id}){
 
     const history = useHistory();
 
@@ -19,18 +21,13 @@ export default function Client(){
         password: ''
     }
 
-    const postLogin = loginTry => {
-        axios.post('https://lambda-anywhere-fitness.herokuapp.com/api/auth/login', loginTry)
-            .then(res => {
+    const postLogin = () => {
                 setFormValues(initialFormValues)
-                console.log(res.data.message)
-                // history.push('/')
-            })
-            .catch(err => {
-                setFormValues(initialFormValues)
-                setError("Unfortunately there is no record for that username and password. You can signup or try again.")
-                history.push('/login')
-            })
+                // if (roleId === 1) {
+                //     history.push('/idash')
+                // }else {
+                //     history.push('/udash')
+                // }
     }
 
     const initialError = '';
@@ -73,8 +70,9 @@ export default function Client(){
             password: formValues.password.trim()
         }
 
-        console.log(loginAttempt)
-        postLogin(loginAttempt)
+        // console.log(loginAttempt)
+        loginUser(loginAttempt)
+        setFormValues(initialFormValues)
     }
 
     useEffect(() => {
@@ -82,7 +80,12 @@ export default function Client(){
             setDisabled(false)
         }
     }, [formValues])
-
+    useEffect(()=>{
+        console.log(id, localStorage.getItem("token"), '<----THIS ARE THE CLIENT UE---->');
+        if(localStorage.getItem('token') !== null){
+            history.push("/dashboard")
+        }
+    }, [id])
     return (
         <div>
             <h1>Login</h1>
@@ -98,3 +101,17 @@ export default function Client(){
         </div>
     )
 }
+
+const mapStateToProps = (state) => {
+    return {
+        userName: state.username,
+        password: state.password,
+        firstName: state.firstName,
+        lastName: state.lastName,
+        email: state.email,
+        roleId: state.roleId,
+        id: state.id
+    }
+  }
+  
+  export default connect(mapStateToProps, { loginUser })(Client)

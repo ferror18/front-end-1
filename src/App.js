@@ -1,10 +1,7 @@
 import React from 'react';
 import {Link, Switch, Route} from 'react-router-dom'
-import './styles/App.css';
-import { Nav,  Udash } from './components';
+import { Udash, Client,  ClientSignup, Idash} from './components';
 import { PrivateRoute } from './utils';
-import Client from './components/User/Client'
-import ClientSignup from './components/User/ClientSignup'
 import {StyledHeader, StyledDiv, StyledImgDiv} from './styles/StyledClient'
 import logo from './UI/Alex/assets/logo.svg'
 import wClass from './styles/wClass.jpeg'
@@ -31,26 +28,17 @@ function App() {
         <Link to={'/login'}>Login</Link>
         <Link to={'/signup'}>Signup</Link>
       </StyledHeader>
-      <h1>Anywhere Fitness</h1>
-      <Nav/>
       <Switch>
-        <Route exact path='/login'>
-          <Client />
-        </Route>
-
-        <Route exact path='/signup'>
-          <ClientSignup />
-        </Route>
-        <Route>
-        <PrivateRoute exact path="/udash" component={Udash} />
-        </Route>
-
-        <Route path='/'>
-        </Route>
-
+        {/* Regular Routes */}
+        <Route exact path='/login' component={Client} />
+        <Route exact path='/signup' component={ClientSignup}/>
+        <Route exact path='/'/>
+      {/* Protected Routes */}
+      <PrivateRoute exact path="/dashboard" Udash={Udash} Idash={Idash}/>
       </Switch>
     </div>
   );
 }
+
 
 export default App;
