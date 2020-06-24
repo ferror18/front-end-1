@@ -1,14 +1,12 @@
 import React from 'react';
 import {Link, Switch, Route} from 'react-router-dom'
-import './styles/App.css';
-import { Nav,  Udash } from './components';
+import {Udash } from './components';
 import { PrivateRoute } from './utils';
 import Client from './components/User/Client'
 import ClientSignup from './components/User/ClientSignup'
-import {StyledHeader, StyledDiv, StyledImgDiv} from './styles/StyledClient'
+import Class from './components/Class/Class'
+import {StyledHeader, StyledDiv} from './styles/StyledClient'
 import logo from './UI/Alex/assets/logo.svg'
-import wClass from './styles/wClass.jpeg'
-import wClass2 from './styles/wClass2.jpeg'
 
 function App() {
 
@@ -32,8 +30,11 @@ function App() {
         <Link to={'/signup'}>Signup</Link>
       </StyledHeader>
       <h1>Anywhere Fitness</h1>
-      <Nav/>
       <Switch>
+        <Route exact path='/class'>
+          <Class />
+        </Route>
+
         <Route exact path='/login'>
           <Client />
         </Route>
@@ -41,8 +42,9 @@ function App() {
         <Route exact path='/signup'>
           <ClientSignup />
         </Route>
+
         <Route>
-        <PrivateRoute exact path="/udash" component={Udash} />
+          <PrivateRoute exact path="/udash" component={Udash} />
         </Route>
 
         <Route path='/'>

@@ -24,7 +24,7 @@ export default function Client(){
             .then(res => {
                 setFormValues(initialFormValues)
                 console.log(res.data.message)
-                // history.push('/')
+                history.push('/udash')
             })
             .catch(err => {
                 setFormValues(initialFormValues)
