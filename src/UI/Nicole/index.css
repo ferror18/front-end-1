@@ -259,8 +259,7 @@
           flex-wrap: wrap;
           align-items: center;
           justify-content: center;
-          width: 200px;
-          height: 200px;
+          padding-left: 20%; 
       }
       .text-content h2 {
           text-align: center;
