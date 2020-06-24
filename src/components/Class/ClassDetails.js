@@ -6,8 +6,10 @@ export default function ClassDeatils (props){
     const{name, description} = details
     return (
         <div>
-            <h3>Class Type: {name}</h3>
-            <p>Class Info: {description}</p>
+            <h3>Class Type:</h3>
+            <p>{name}</p>
+            <h4>Class Info:</h4>
+            <p>{description}</p>
         </div>
         )
 }

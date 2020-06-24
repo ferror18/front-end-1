@@ -6,6 +6,8 @@ import {classInfo} from './dummyserver'
 export default function Class(){
     const [classList, setClassList] = useState([]);
 
+    /*axios call for class information from server */
+
     useEffect(() => {
         const getClasses = () => {
             setClassList(classInfo);

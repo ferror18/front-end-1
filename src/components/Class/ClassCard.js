@@ -6,9 +6,11 @@ import {StyledCard} from '../../styles/StyledClass'
 export default function ClassCard(props){
     const {title, categoryId} = props.fitnessClass
 
+    /*axios call for category information */
+
     return(
         <StyledCard>
-            <h2>Class Name: {title}</h2>
+            <h2>{title}</h2>
             {
                  categoryInfo.map(category => {
                     if(category.id === categoryId){
