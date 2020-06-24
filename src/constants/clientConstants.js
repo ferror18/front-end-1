@@ -1,0 +1,1 @@
+export const BASE_URL = 'https://lambda-anywhere-fitness.herokuapp.com/api/'

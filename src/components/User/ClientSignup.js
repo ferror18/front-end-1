@@ -37,7 +37,7 @@ export default function ClientSignup(){
             })
             .finally(() => {
                 setFormValues(initialFormvalues)
-                history.push('/')
+                
             })
     }
 
@@ -104,7 +104,7 @@ export default function ClientSignup(){
 
     return (
         <div>
-            <h2>Signup</h2>
+            <h1>Signup</h1>
             <Signup 
                 values={formValues}
                 onInputChange={onInputChange}
