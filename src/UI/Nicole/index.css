@@ -172,6 +172,10 @@
       background-color: #579fc0;
       color: #f3f3f3;
   }
+  .btn-link {
+    text-decoration: none;
+    font-weight: bold;
+  }
   .about-top-content {
     margin-bottom: 20px;
     border-bottom: 1px dashed black;
@@ -202,6 +206,7 @@
   .middle-sections-container .middle-section-box h2 {
     margin-top: 5px;
   }
+  
   @media (max-width: 500px) {
       .navigation {
         justify-content: center;
@@ -260,6 +265,15 @@
       .text-content h2 {
           text-align: center;
       }
+      .text-content {
+        display: flex;
+        flex-direction: column;
+        width: 80%;
+        padding-left: 15%;
+        text-align: center;
+        justify-content: center;
+        margin: auto;
+      }
     }
   
   @media (max-width: 800px) {
@@ -271,9 +285,22 @@
         justify-content: center;
       }
       .text-content {
-          width: 80%;
+        display: flex;
+        flex-direction: column;
+        width: 80%;
+        padding-left: 15%;
+        text-align: center;
+        justify-content: center;
+      }
+      .img-content {
+        padding: 5%;
+        justify-content: center;
       }
       .home .content-activities .content-section .text-content {
           padding: 15%;
+      }
+      .content-login {
+        width: 80%;
+        margin: 5%;
       }
     }
