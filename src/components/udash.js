@@ -4,10 +4,10 @@ import { deleteUser, logOut } from "../actions"
 import { useHistory } from "react-router-dom";
 import { Settings } from "../components";
 
-const Udash = ({ roleId, logOut, deleteUser, id})=>{
+const Udash = ({logOut})=>{
     const history = useHistory()
     const logOutHandler = event => {
-        logOut()
+        logOut();
         history.push('/')
     }
     return (

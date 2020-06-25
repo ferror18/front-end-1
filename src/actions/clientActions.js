@@ -80,6 +80,8 @@ export const loginUser = (userCredentials) => (dispatch) => {
                 console.log(res)
                 localStorage.setItem("token", res.data.token)
                 console.log(localStorage.getItem('token'));
+                localStorage.setItem("roleId", res.data.user.roleId)
+                console.log(localStorage.getItem('roleId'));
                 dispatch({ type: USER_POST_SUCCESS, payload: res.data.user })
                 
             })
@@ -93,7 +95,7 @@ export const loginUser = (userCredentials) => (dispatch) => {
 export const logOut = () => (dispatch) => {
   dispatch({ type: USER_LOG_OUT_START})
   localStorage.clear()
-  console.log(localStorage.getItem('token'));
+  // console.log(localStorage.getItem('token'));
   dispatch({ type: USER_LOG_OUT_SUCCESS})
 }
 export const deleteUser = (userId) => (dispatch) => {

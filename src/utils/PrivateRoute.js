@@ -1,23 +1,31 @@
 import React from 'react'
 import { Route, Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
+import { logOut } from '../actions'
 
-const PrivateRoute = ({ roleId, Udash, Idash, ...rest }) => {
+const PrivateRoute = ({ logOut, Udash, Idash, ...rest }) => {
+
   return (
-    <Route
+    <Route 
       render={(props) => {
         // localStorage.getItem('token') ? (
         //   <Component {...props} />
         // ) : (
         //   <Redirect to="/" />
         // )
-        if (localStorage.getItem('token')!== null) {
-            if (roleId === 2) {
+        const roleId = localStorage.getItem("roleId")
+        console.log(roleId, localStorage.getItem('token'),  'Initial');
+        if (localStorage.getItem('token') !== null) {
+            if (roleId === "2") {
               console.log(roleId, 'USER');
               return <Udash {...rest} />
-            } else {
+            } if (roleId === "1") {
               console.log(roleId, 'Instructor');
               return <Idash {...rest} />
+            } else {
+              console.log(roleId, 'Neither');
+              // localStorage.clear()
+              // return <Redirect to="/login" />
             }
         } else {
           console.log(roleId, localStorage.getItem('token'),  'None');
@@ -36,8 +44,7 @@ const mapStateToProps = (state) => {
       firstName: state.firstName,
       lastName: state.lastName,
       email: state.email,
-      roleId: state.roleId
   }
 }
 
-export default connect(mapStateToProps, {  })(PrivateRoute)
+export default connect(mapStateToProps, { logOut })(PrivateRoute)

@@ -144,7 +144,7 @@ import {
         return {...initialState}
       case CLASS_POST_START:
       console.log(action.type);
-      return state
+        return state
       case CLASS_POST_SUCCESS:
         console.log(action.type, action.payload);
         return state
@@ -153,10 +153,10 @@ import {
         return state
       case CLASS_GET_START:
         console.log(action.type);
-        return state
+        return (state)
       case CLASS_GET_SUCCESS:
         console.log(action.type, action.payload);
-        return{...state, classes:action.payload, error:''}
+        return({...state, classes:action.payload, error:''})
       case CLASS_GET_FAILURE:
           console.log(action.type, action.payload);
           return({...state, error:action.payload})

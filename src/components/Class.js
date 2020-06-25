@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 import {StyledDiv} from '../styles/StyledClass'
 import ClassCard from './ClassCard'
 
