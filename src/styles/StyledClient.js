@@ -23,17 +23,18 @@ export const StyledForm = styled.form`
     border: 1px solid rgb(210, 210, 210);
     border-radius: 6px;
     box-shadow: 0px 1px 6px -2px rgb(128, 127, 127);
-    margin: 5%;
+    margin: 5% 15%;
     padding: 5%;
-    background-color: #E6F4F1;
+    background-color: #CBF6FF;
 `
 
 export const StyledHeader = styled.div`
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
     background:  #028AF2;
     height: 4rem;
+    margin: 1% 0;
 `
 
 export const StyledErrorDiv = styled.div`
@@ -62,7 +63,8 @@ export const StyledDiv = styled.div`
     display: flex;
     color: white;
     align-items: center;
-    width: 30%;
+    justify-content: space-around;
+    padding: 15%;
 `
 
 export const StyledImgDiv = styled.div`

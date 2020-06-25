@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { Switch, Route} from 'react-router-dom'
 import { Udash, Client,  ClientSignup, Idash, Nav} from './components';
@@ -10,12 +11,15 @@ import { Box } from "@material-ui/core";
 import MenuIcon from '@material-ui/icons/Menu';
 import { connect } from 'react-redux';
 import { useStyles } from './styles/materialUi';
+import Hamburger from './components/Hamburger'
+import {StyledHeader, StyledDiv} from './styles/StyledClient'
+import logo from './UI/Alex/assets/logo.svg'
 
 function App() {
   const classes = useStyles();
   const getLogo = () => {
     if(logo){
-      return (<img id='logo' src={logo} alt='logo'/>)
+      return (<img id='logo' style={{position: ''}} src={logo} alt='logo'/>)
     }else {
       return (<div></div>)
     }

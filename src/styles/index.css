@@ -11,13 +11,13 @@ body{
 }
 
 a{
-  font-size: 1rem;
+  font-size: 1.5rem;
   font-weight: bold;
   text-decoration: none;
   color: white;
   border: white 1px solid;
   border-radius: 10%;
-  padding: 1%;
+  padding: 5%;
 }
 
 a:hover{
@@ -52,4 +52,45 @@ img{
 
 h1{
   color: white;
+}
+
+#drawer{
+  background:#028AF2;
+  width: 20%;
+}
+
+#parent{
+  padding: 0 5%;
+  margin: 0 0 0 -2%;
+}
+
+#hamburger-container{
+  display: inline-block;
+  cursor: pointer;
+}
+
+#bar1, #bar2, #bar3{
+  background-color: white;
+  height: 5px;
+  margin: 6px 0;
+  width: 35px;
+  transition: 0.4s;
+}
+
+.change #bar1{
+  -webkit-transform: rotate(-45deg) translate(-9px, 6px);
+  transform: rotate(-45deg) translate(-9px, 6px);
+}
+
+.change #bar2{
+  opacity: 0;
+}
+
+.change #bar3{
+  -webkit-transform: rotate(45deg) translate(-8px, -8px);
+  transform: rotate(45deg) translate(-8px, -8px);
+}
+
+#hamburger-nav-bar{
+  padding: 2%;
 }
