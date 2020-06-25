@@ -7,7 +7,7 @@ import formSchema from '../validation/clientLoginFormSchema'
 import { connect } from "react-redux"
 import { loginUser } from "../actions";
 
-function Client({loginUser, id}){
+function Client({ setLoggedIn, loginUser, id }){
 
     const history = useHistory();
 
@@ -82,7 +82,7 @@ function Client({loginUser, id}){
     }, [formValues])
     useEffect(()=>{
         console.log(id, localStorage.getItem("token"), '<----THIS ARE THE CLIENT UE---->');
-        if(localStorage.getItem('token') !== null){
+        if(localStorage.getItem('token') !== null && localStorage.getItem('roleId') !== null){
             history.push("/dashboard")
         }
     }, [id])
