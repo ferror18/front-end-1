@@ -33,13 +33,21 @@ export const CLASS_DELETE_START = 'CLASS_DELETE_START'
 export const CLASS_DELETE_SUCCESS = 'CLASS_DELETE_SUCCESS'
 export const CLASS_DELETE_FAILURE = 'CLASS_DELETE_FAILURE'
 
-export const CLASS_UPDATE_START = 'CLASS_UPDATE_START'
-export const CLASS_UPDATE_SUCCESS = 'CLASS_UPDATE_SUCCESS'
-export const CLASS_UPDATE_FAILURE = 'CLASS_UPDATE_FAILURE'
-
 export const CLASS_GET_START = 'CLASS_GET_START'
 export const CLASS_GET_SUCCESS = 'CLASS_GET_SUCCESS'
 export const CLASS_GET_FAILURE = 'CLASS_GET_FAILURE'
+
+export const USER_GET_CLASS_START = 'USER_GET_CLASS_START'
+export const USER_GET_CLASS_SUCCESS = 'USER_GET_CLASS_SUCCESS'
+export const USER_GET_CLASS_FAILURE = 'USER_GET_CLASS_FAILURE'
+
+export const USER_POST_CLASS_START = 'USER_POST_CLASS_START'
+export const USER_POST_CLASS_SUCCESS = 'USER_POST_CLASS_SUCCESS'
+export const USER_POST_CLASS_FAILURE = 'USER_POST_CLASS_FAILURE'
+
+export const USER_DELETE_CLASS_START = 'USER_DELETE_CLASS_START'
+export const USER_DELETE_CLASS_SUCCESS = 'USER_DELETE_CLASS_SUCCESS'
+export const USER_DELETE_CLASS_FAILURE = 'USER_DELETE_CLASS_FAILURE'
 
 export const CATEGORY_POST_START = 'CATEGORY_POST_START'
 export const CATEGORY_POST_SUCCESS = 'CATEGORY_POST_SUCCESS'
@@ -127,8 +135,44 @@ export const getClasses = () => (dispatch) => {
       dispatch({type: CLASS_GET_FAILURE, payload: err.message})
     })
 }
-//user
 
+//user
+export const joinClass = (classId) => (dispatch) => {
+  dispatch({type: USER_POST_CLASS_START,})
+  axiosWithAuth().post(`user/classes/${classId}`)
+  .then((res)=>{
+    console.log(res);
+    dispatch({type: USER_POST_CLASS_SUCCESS, payload: res.data})
+  })
+  .catch((err)=>{
+    console.log(err);
+    dispatch({type: USER_POST_CLASS_FAILURE, payload: err.message})
+  })
+}
+export const leaveClass = (classId) => (dispatch) => {
+  dispatch({type: USER_DELETE_CLASS_START,})
+  axiosWithAuth().delete(`user/classes/${classId}`)
+  .then((res)=>{
+    console.log(res);
+    dispatch({type: USER_DELETE_CLASS_SUCCESS, payload: res.data})
+  })
+  .catch((err)=>{
+    console.log(err);
+    dispatch({type: USER_DELETE_CLASS_FAILURE, payload: err.message})
+  })
+}
+export const getEnrolledClasses = () => (dispatch) => {
+  dispatch({type: USER_GET_CLASS_START})
+  axiosWithAuth().get(`user/classes`)  
+    .then((res) => {
+      console.log(res)
+      dispatch({type: USER_GET_CLASS_SUCCESS, payload: res.data})
+    })
+    .catch(err => {
+      console.log(err)
+      dispatch({type: USER_GET_CLASS_FAILURE, payload: err.message})
+    })
+}
 //instructor
 export const createClass = (newClass) => (dispatch) => {
   dispatch({type: CLASS_POST_START,})
