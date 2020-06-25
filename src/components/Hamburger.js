@@ -1,4 +1,4 @@
-import React, {useState, Component} from 'react';
+import React, {useState} from 'react';
 import {Link} from 'react-router-dom'
 import {Motion, spring} from 'react-motion'
 import {Drawer, StyledLink} from '../styles/StyledHamburger'
