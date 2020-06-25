@@ -5,6 +5,7 @@ export {
     updateUser,
     logOut,
     createClass,
+    getClasses,
     USER_POST_START,
     USER_POST_SUCCESS,
     USER_POST_FAILURE,
