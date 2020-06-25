@@ -1,17 +1,13 @@
-import React, { useState, useEffect } from "react"
+import React, { useEffect } from "react"
 import { connect } from "react-redux"
-import { deleteUser, logOut, getClasses, getEnrolledClasses } from "../actions"
+import { logOut, getClasses, getEnrolledClasses } from "../actions"
 import { useHistory } from "react-router-dom";
 import { Settings, ClassForm, Class } from "../components";
-import { axiosWithAuth } from "../utils";
+import { Box, Typography } from '@material-ui/core';
 
 const Idash = ({ logOut, deleteUser, id, classes, getClasses, getEnrolledClasses, enrolledClasses})=>{
    
     const history = useHistory()
-    const deleteaccount = event => {
-        deleteUser(id);
-        history.push('/')
-    }
     const logOutHandler = event => {
         logOut()
         history.push('/')
@@ -24,13 +20,13 @@ const Idash = ({ logOut, deleteUser, id, classes, getClasses, getEnrolledClasses
     }, [])
 
     return (
-        <div>
-        <h1>Instructor Dashboard</h1>
+        <Box>
+        <Typography variant='h1'>Instructor Dashboard</Typography>
         <button onClick={logOutHandler}>LOG OUT</button>
         <Settings/>
         <ClassForm/>
         <Class classInfo={classes} enrolledClasses={enrolledClasses}/>
-        </div>
+        </Box>
     )
 }
 

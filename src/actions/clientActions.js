@@ -104,6 +104,7 @@ export const logOut = () => (dispatch) => {
   dispatch({ type: USER_LOG_OUT_START})
   localStorage.clear()
   // console.log(localStorage.getItem('token'));
+  // setLoggedIn(false)
   dispatch({ type: USER_LOG_OUT_SUCCESS})
 }
 export const deleteUser = (userId) => (dispatch) => {
@@ -184,5 +185,29 @@ export const createClass = (newClass) => (dispatch) => {
   .catch((err)=>{
     console.log(err);
     dispatch({type: CLASS_POST_FAILURE, payload: err.message})
+  })
+}
+export const deleteClass = (classId) => (dispatch) => {
+  dispatch({type: CLASS_DELETE_START,})
+  axiosWithAuth().delete(`classes/${classId}`)
+  .then((res)=>{
+    console.log(res);
+    dispatch({type: CLASS_DELETE_SUCCESS, payload: res.data})
+  })
+  .catch((err)=>{
+    console.log(err);
+    dispatch({type: CLASS_DELETE_FAILURE, payload: err.message})
+  })
+}
+export const updateClass = (classId, newClass) => (dispatch) => {
+  dispatch({type: CLASS_PUT_START,})
+  axiosWithAuth().put(`classes/${classId}`, newClass)
+  .then((res)=>{
+    console.log(res);
+    dispatch({type: CLASS_PUT_SUCCESS, payload: res.data})
+  })
+  .catch((err)=>{
+    console.log(err);
+    dispatch({type: CLASS_PUT_FAILURE, payload: err.message})
   })
 }

@@ -50,7 +50,7 @@ import {
   // 1. create initial state
   const initialState = {
     //User State
-    username: '',
+    username: 'test',
     password: '',
     firstName: '',
     lastName: '',
@@ -72,7 +72,8 @@ import {
     // utility state
     error: '',
     classes: [],
-    enrolledClasses: []
+    enrolledClasses: [],
+    loggedIn: false
 
 }
   
@@ -86,7 +87,7 @@ import {
           error: ''
         }
       case USER_POST_SUCCESS:
-        console.log(action.type, action.payload, state.token);
+        console.log(action.type, action.payload, state.loggedIn);
         return {
           ...state,
           // username: action.payload.username,
@@ -96,6 +97,7 @@ import {
           // email: action.payload.email,
           roleId: action.payload.roleId,
           id: action.payload.id,
+          loggedIn: true,
           error: '',
         }
       case USER_POST_FAILURE:
@@ -147,7 +149,7 @@ import {
           error: '',
         }
       case USER_LOG_OUT_SUCCESS:
-        console.log(action.type);
+        console.log(action.type, 'Logged In -->',  state.loggedIn);
         return {...initialState}
       case CLASS_POST_START:
       console.log(action.type);
@@ -165,6 +167,24 @@ import {
         console.log(action.type, action.payload);
         return({...state, classes:action.payload, error:''})
       case CLASS_GET_FAILURE:
+          console.log(action.type, action.payload);
+          return({...state, error:action.payload})
+      case CLASS_DELETE_START:
+        console.log(action.type);
+        return (state)
+      case CLASS_DELETE_SUCCESS:
+        console.log(action.type, action.payload);
+        return({...state, error:''})
+      case CLASS_DELETE_FAILURE:
+          console.log(action.type, action.payload);
+          return({...state, error:action.payload})
+      case CLASS_PUT_START:
+        console.log(action.type);
+        return (state)
+      case CLASS_PUT_SUCCESS:
+        console.log(action.type, action.payload);
+        return({...state, error:''})
+      case CLASS_PUT_FAILURE:
           console.log(action.type, action.payload);
           return({...state, error:action.payload})
       case USER_POST_CLASS_START:

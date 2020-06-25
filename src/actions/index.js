@@ -9,6 +9,8 @@ export {
     joinClass,
     leaveClass,
     getEnrolledClasses,
+    deleteClass,
+    updateClass,
     USER_POST_START,
     USER_POST_SUCCESS,
     USER_POST_FAILURE,

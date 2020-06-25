@@ -4,8 +4,9 @@ import { deleteUser, logOut, getClasses, getEnrolledClasses } from "../actions"
 import { useHistory } from "react-router-dom";
 import { Settings } from "../components";
 import Class from "./Class";
+import { Box } from '@material-ui/core';
 
-const Udash = ({logOut, getClasses, classes, getEnrolledClasses, enrolledClasses})=>{
+const Udash = ({ logOut, getClasses, classes, getEnrolledClasses, enrolledClasses})=>{
     const history = useHistory()
     const logOutHandler = event => {
         logOut();
@@ -18,12 +19,12 @@ const Udash = ({logOut, getClasses, classes, getEnrolledClasses, enrolledClasses
     }, [])
 
     return (
-        <div>
+        <Box>
         <h1>Client Dashboard</h1>
         <button onClick={logOutHandler}>LOG OUT</button>
         <Settings/>
         <Class classInfo={classes} enrolledClasses={enrolledClasses}/>
-        </div>
+        </Box>
     )
 }
 

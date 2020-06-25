@@ -7,7 +7,7 @@ import formSchema from '../validation/clientLoginFormSchema'
 import { connect } from "react-redux"
 import { loginUser } from "../actions";
 
-function Client({ roleId, loginUser, id }){
+function Client({ setLoggedIn, loginUser, id }){
 
     const history = useHistory();
 
