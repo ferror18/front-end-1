@@ -1,13 +1,22 @@
-import React from 'react';
-import {Switch, Route} from 'react-router-dom'
-import { Udash, Login,  ClientSignup, Idash} from './components';
-import Hamburger from './components/Hamburger'
+
+import React, { useState } from 'react';
+import { Switch, Route} from 'react-router-dom'
+import { Udash, Client,  ClientSignup, Idash, Nav} from './components';
 import { PrivateRoute } from './utils';
+// import {StyledHeader, StyledDiv, StyledImgDiv} from './styles/StyledClient'
+import logo from './UI/Alex/assets/logo.svg'
+import wClass from './styles/wClass.jpeg'
+import wClass2 from './styles/wClass2.jpeg'
+import { Box } from "@material-ui/core";
+import MenuIcon from '@material-ui/icons/Menu';
+import { connect } from 'react-redux';
+import { useStyles } from './styles/materialUi';
+import Hamburger from './components/Hamburger'
 import {StyledHeader, StyledDiv} from './styles/StyledClient'
 import logo from './UI/Alex/assets/logo.svg'
 
 function App() {
-
+  const classes = useStyles();
   const getLogo = () => {
     if(logo){
       return (<img id='logo' style={{position: ''}} src={logo} alt='logo'/>)
@@ -15,29 +24,30 @@ function App() {
       return (<div></div>)
     }
   }
-
   return (
-    <div className="App">
-      <StyledHeader>
-        <Hamburger />
-        <StyledDiv>
-          {getLogo()}
-          <h2 style={{transform: 'scaleY(3) scaleX(2.5)'}}>Anywhere Fitness</h2>
-        </StyledDiv>
-        {/* <a href={'https://youthful-curie-92bef1.netlify.app'}>Home</a>
-        <Link to={'/'}>Login</Link>
-        <Link to={'/signup'}>Signup</Link> */}
-      </StyledHeader>
-      <Switch>
-        {/* Regular Routes */}
-        <Route exact path='/signup' component={ClientSignup}/>
-        <Route exact path='/' component={Login} />
-      {/* Protected Routes */}
-      <PrivateRoute exact path="/dashboard" Udash={Udash} Idash={Idash}/>
-      </Switch>
+
+    <React.Fragment>
+    <div className={classes.root}>
+      <Box className={`${classes.offset} ${classes.content}`}>
+        <Nav/>
+          <Switch>
+            {/* Regular Routes */}
+            <Route exact path='/login' component={Client} />
+            <Route exact path='/signup' component={ClientSignup}/>
+            <Route exact path='/'/>
+            {/* Protected Routes */}
+            <PrivateRoute exact path="/dashboard" Udash={Udash} Idash={Idash}/>
+          </Switch>
+      </Box>
     </div>
+    </React.Fragment>
   );
 }
 
 
-export default App;
+const mapStateToProps = (state) => {
+  return {
+      loggedIn: state.loggedIn
+  }
+}
+export default connect(mapStateToProps,{  })(App)

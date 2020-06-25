@@ -1,28 +1,39 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import { connect } from "react-redux"
-import { deleteUser, logOut } from "../actions"
+import { deleteUser, logOut, getClasses, getEnrolledClasses } from "../actions"
 import { useHistory } from "react-router-dom";
 import { Settings } from "../components";
+import Class from "./Class";
+import { Box } from '@material-ui/core';
 
-const Udash = ({ roleId, logOut, deleteUser, id})=>{
+const Udash = ({ logOut, getClasses, classes, getEnrolledClasses, enrolledClasses})=>{
     const history = useHistory()
     const logOutHandler = event => {
-        logOut()
+        logOut();
         history.push('/')
     }
+    useEffect(() => {
+        getClasses();
+        getEnrolledClasses();
+
+    }, [])
+
     return (
-        <div>
-        <h1>User Dashboard</h1>
+        <Box>
+        <h1>Client Dashboard</h1>
         <button onClick={logOutHandler}>LOG OUT</button>
         <Settings/>
-        </div>
+        <Class classInfo={classes} enrolledClasses={enrolledClasses}/>
+        </Box>
     )
 }
 
 const mapStateToProps = (state) => {
     return {
         id: state.id,
-        roleId: state.roleId
+        roleId: state.roleId,
+        classes: state.classes,
+        enrolledClasses: state.enrolledClasses
     }
 }
-export default connect(mapStateToProps,{ deleteUser, logOut })(Udash)
+export default connect(mapStateToProps,{ deleteUser, logOut, getClasses, getEnrolledClasses })(Udash)

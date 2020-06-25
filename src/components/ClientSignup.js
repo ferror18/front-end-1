@@ -88,7 +88,7 @@ function ClientSignup({ createUser, error, id }){
         }
     }, [formValues])
     useEffect(()=>{
-        console.log(error, '<----THIS ARE THE PROPS UE---->');
+        console.log(error, id, '<----THIS ARE THE PROPS UE---->');
         if(id !== '' && error === ''){
             history.push("/dashboard")
         }
