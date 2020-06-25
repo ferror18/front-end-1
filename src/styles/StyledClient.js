@@ -30,10 +30,11 @@ export const StyledForm = styled.form`
 
 export const StyledHeader = styled.div`
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
     background:  #028AF2;
     height: 4rem;
+    margin: 1% 0;
 `
 
 export const StyledErrorDiv = styled.div`
@@ -62,7 +63,8 @@ export const StyledDiv = styled.div`
     display: flex;
     color: white;
     align-items: center;
-    width: 30%;
+    justify-content: space-around;
+    padding: 15%;
 `
 
 export const StyledImgDiv = styled.div`
