@@ -113,8 +113,17 @@ export const updateUser = (newUser) => (dispatch) => {
 
 // CLASS ACTIONS
 //general
-export const fetchClasses = () => (dispatch) => {
+export const getClasses = () => (dispatch) => {
   dispatch({type: CLASS_GET_START})
+  axiosWithAuth().get(`classes`)  
+    .then((res) => {
+      console.log(res)
+      dispatch({type: CLASS_GET_SUCCESS, payload: res.data})
+    })
+    .catch(err => {
+      console.log(err)
+      dispatch({type: CLASS_GET_FAILURE, payload: err.message})
+    })
 }
 //user
 

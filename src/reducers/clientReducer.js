@@ -64,7 +64,8 @@ import {
     name: '',
     description: '',
     // utility state
-    error: ''
+    error: '',
+    classes: []
 
 }
   
@@ -143,16 +144,22 @@ import {
         return {...initialState}
       case CLASS_POST_START:
       console.log(action.type);
+      return state
       case CLASS_POST_SUCCESS:
         console.log(action.type, action.payload);
+        return state
       case CLASS_POST_FAILURE:
         console.log(action.type, action.payload);
+        return state
       case CLASS_GET_START:
         console.log(action.type);
+        return state
       case CLASS_GET_SUCCESS:
         console.log(action.type, action.payload);
+        return{...state, classes:action.payload, error:''}
       case CLASS_GET_FAILURE:
           console.log(action.type, action.payload);
+          return({...state, error:action.payload})
       default:
         return state
     }
