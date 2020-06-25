@@ -1,6 +1,6 @@
 import React from 'react';
-import {Link, Switch, Route} from 'react-router-dom'
-import { Udash, Client,  ClientSignup, Idash} from './components';
+import {Switch, Route} from 'react-router-dom'
+import { Udash, Login,  ClientSignup, Idash} from './components';
 import Hamburger from './components/Hamburger'
 import { PrivateRoute } from './utils';
 import {StyledHeader, StyledDiv} from './styles/StyledClient'
@@ -31,7 +31,7 @@ function App() {
       <Switch>
         {/* Regular Routes */}
         <Route exact path='/signup' component={ClientSignup}/>
-        <Route exact path='/' component={Client} />
+        <Route exact path='/' component={Login} />
       {/* Protected Routes */}
       <PrivateRoute exact path="/dashboard" Udash={Udash} Idash={Idash}/>
       </Switch>
