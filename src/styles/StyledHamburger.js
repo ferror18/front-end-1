@@ -2,7 +2,7 @@ import styled from 'styled-components'
 
 export const Drawer = styled.div`
     position: absolute;
-    height: 90%;
+    height: 100%;
     background: #CBF6FF;
     width: 30%;
     left:${props => props.left}%;
@@ -10,7 +10,7 @@ export const Drawer = styled.div`
 
 export const StyledLink = styled.div`
     cursor: pointer;
-    padding: 3%;
-    margin: 5%;
+    padding: 5%;
+    margin: 15% 0;
     color: white;
 `
