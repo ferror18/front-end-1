@@ -37,6 +37,10 @@ export const CLASS_UPDATE_START = 'CLASS_UPDATE_START'
 export const CLASS_UPDATE_SUCCESS = 'CLASS_UPDATE_SUCCESS'
 export const CLASS_UPDATE_FAILURE = 'CLASS_UPDATE_FAILURE'
 
+export const CLASS_GET_START = 'CLASS_GET_START'
+export const CLASS_GET_SUCCESS = 'CLASS_GET_SUCCESS'
+export const CLASS_GET_FAILURE = 'CLASS_GET_FAILURE'
+
 export const CATEGORY_POST_START = 'CATEGORY_POST_START'
 export const CATEGORY_POST_SUCCESS = 'CATEGORY_POST_SUCCESS'
 export const CATEGORY_POST_FAILURE = 'CATEGORY_POST_FAILURE'
@@ -109,9 +113,21 @@ export const updateUser = (newUser) => (dispatch) => {
 
 // CLASS ACTIONS
 //general
-
-//user
-export const createClass = (id) => (dispatch) => {
-  
+export const fetchClasses = () => (dispatch) => {
+  dispatch({type: CLASS_GET_START})
 }
+//user
+
 //instructor
+export const createClass = (newClass) => (dispatch) => {
+  dispatch({type: CLASS_POST_START,})
+  axiosWithAuth().post('classes', newClass)
+  .then((res)=>{
+    console.log(res);
+    dispatch({type: CLASS_POST_SUCCESS, payload: res.data})
+  })
+  .catch((err)=>{
+    console.log(err);
+    dispatch({type: CLASS_POST_FAILURE, payload: err.message})
+  })
+}
