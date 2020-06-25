@@ -30,9 +30,8 @@ function App() {
       </StyledHeader>
       <Switch>
         {/* Regular Routes */}
-        <Route exact path='/login' component={Client} />
         <Route exact path='/signup' component={ClientSignup}/>
-        <Route exact path='/'/>
+        <Route exact path='/' component={Client} />
       {/* Protected Routes */}
       <PrivateRoute exact path="/dashboard" Udash={Udash} Idash={Idash}/>
       </Switch>

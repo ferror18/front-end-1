@@ -1,4 +1,5 @@
 import React from 'react';
+import {Motion, spring} from 'react-motion'
 import {StyledForm, StyledButton, StyledInnerForm, StyledErrorDiv, StyledLoginErr} from '../styles/StyledClient'
 
 export default function ClientForm(props){
@@ -10,7 +11,7 @@ export default function ClientForm(props){
             return (
                 <StyledLoginErr>
                     <p>{loginErr}</p>
-                </StyledLoginErr>
+                </StyledLoginErr> 
             )
         }
     }
