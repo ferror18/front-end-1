@@ -32,9 +32,9 @@ export default function Hamburger(){
                 >
                 {style=>(
                     <Drawer id="drawer" left={style.left}>
-                        <StyledLink><a href={'https://youthful-curie-92bef1.netlify.app'}>Home</a></StyledLink>
-                        <StyledLink><Link to="/">Login</Link></StyledLink>
-                        <StyledLink><Link to="/signup">Signup</Link></StyledLink>
+                        <StyledLink><a id={'Home'} href={'https://youthful-curie-92bef1.netlify.app'}>Home</a></StyledLink>
+                        <StyledLink ><Link id="Login" to="/">Login</Link></StyledLink>
+                        <StyledLink><Link id="Signup" to="/signup">Signup</Link></StyledLink>
                     </Drawer>
                 )}
             </Motion>

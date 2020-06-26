@@ -1,6 +1,6 @@
 /* eslint-disable no-undef */
 
-describe('Navigates to home page and loads', () => {
+describe('Navigates to login page and loads', () => {
     it('navigates to the site', () => {
         cy.visit('http://localhost:3000')
         cy.url().should('include', 'localhost')
@@ -8,35 +8,14 @@ describe('Navigates to home page and loads', () => {
 
     it('loads page correctly', () => {
         cy.contains('Anywhere Fitness')
-        cy.contains('Client Login')
-        cy.contains('Client Signup')
-    })
-})
-
-describe('Clicks on Client page button and loads Client page', () => {
-    it('navigates to the site and clicks the client button', () => {
-        cy.visit('http://localhost:3000')
-        cy.contains('Client Login').click()
-    }) 
-
-    it('Client page loads correctly', () => {
-        cy.contains('Client Login')
-        cy.contains('Anywhere Fitness')
-        cy.contains('UserName')
-        cy.contains('Password')
-        cy.contains('Home')
-        cy.contains('Client Login')
-        cy.contains('Client Signup')
+        cy.contains('Login')
     })
 })
 
 describe('Able to input data into the form', () => {
-    it('navigates to client login page', () => {
-        cy.visit('http://localhost:3000')
-        cy.contains('Client Login').click()
-    })
 
-    it('all input fields are blank and button the lobin is disabled', () => {
+    it('it navigates to the login page and all input fields are blank and button the login is disabled', () => {
+        cy.visit('http://localhost:3000')
         cy.get('#userNameInput').should('be.empty')
             .should('have.value', '')
         cy.get('#passwordInput').should('be.empty')
@@ -62,7 +41,6 @@ describe('Able to input data into the form', () => {
 describe('Error messages appear if incorrect format of username and password are entered', () => {
     it('navigates to client login page and all input fields are blank', () => {
         cy.visit('http://localhost:3000')
-        cy.contains('Client Login').click()
         cy.get('#userNameInput').should('be.empty')
             .should('have.value', '')
          cy.get('#passwordInput').should('be.empty')
@@ -81,29 +59,28 @@ describe('Error messages appear if incorrect format of username and password are
     })
 })
 
-describe('Enters in valid input and submits the data for an unknown user', () => {
-    it('navigates to client login page and all input fields are blank', () => {
-        cy.visit('http://localhost:3000')
-        cy.contains('Client Login').click()
-        cy.get('#userNameInput').should('be.empty')
-            .should('have.value', '')
-         cy.get('#passwordInput').should('be.empty')
-            .should('have.value', '')
-        cy.get('#login').should('be.disabled')
-    })
+/*Due to React 2 changes to the code this error no longer shows due to the call happening on the React 2 side and he didn't have a way to give the error back to display the error message */
+// describe('Enters in valid input and submits the data for an unknown user', () => {
+//     it('navigates to client login page and all input fields are blank', () => {
+//         cy.visit('http://localhost:3000')
+//         cy.get('#userNameInput').should('be.empty')
+//             .should('have.value', '')
+//          cy.get('#passwordInput').should('be.empty')
+//             .should('have.value', '')
+//         cy.get('#login').should('be.disabled')
+//     })
 
-    it('enters in data form for unknown user ', () => {
-        cy.get('#userNameInput').type('NameName')
-        cy.get('#passwordInput').type('password')
-        cy.get('#login').click()
-        cy.contains('Unfortunately')
-    })
-})
+//     it('enters in data form for unknown user ', () => {
+//         cy.get('#userNameInput').type('NameName')
+//         cy.get('#passwordInput').type('password')
+//         cy.get('#login').click()
+//         cy.contains('Unfortunately')
+//     })
+// })
 
 describe('Enters in valid input and submits data for a konwn user', () => {
     it('navigates to client login page and all input fields are blank', () => {
         cy.visit('http://localhost:3000')
-        cy.contains('Client Login').click()
         cy.get('#userNameInput').should('be.empty')
             .should('have.value', '')
          cy.get('#passwordInput').should('be.empty')
