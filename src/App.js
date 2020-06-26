@@ -1,8 +1,8 @@
 
 import React, { useState } from 'react';
 import { Switch, Route} from 'react-router-dom'
-import { Udash, Client,  ClientSignup, Idash, Nav} from './components';
-import { PrivateRoute } from './utils';
+import { Udash, Client,  ClientSignup, Idash, Nav, Settings} from './components';
+import { PrivateRouteDashboard, PrivateRoute } from './utils';
 // import {StyledHeader, StyledDiv, StyledImgDiv} from './styles/StyledClient'
 import logo from './UI/Alex/assets/logo.svg'
 import wClass from './styles/wClass.jpeg'
@@ -13,7 +13,6 @@ import { connect } from 'react-redux';
 import { useStyles } from './styles/materialUi';
 import Hamburger from './components/Hamburger'
 import {StyledHeader, StyledDiv} from './styles/StyledClient'
-import logo from './UI/Alex/assets/logo.svg'
 
 function App() {
   const classes = useStyles();
@@ -25,10 +24,9 @@ function App() {
     }
   }
   return (
-
-    <React.Fragment>
     <div className={classes.root}>
-      <Box className={`${classes.offset} ${classes.content}`}>
+      {/* <Box className={`${classes.offset} ${classes.content}`}> */}
+      <Box className={classes.content}>
         <Nav/>
           <Switch>
             {/* Regular Routes */}
@@ -36,11 +34,11 @@ function App() {
             <Route exact path='/signup' component={ClientSignup}/>
             <Route exact path='/'/>
             {/* Protected Routes */}
-            <PrivateRoute exact path="/dashboard" Udash={Udash} Idash={Idash}/>
+            <PrivateRouteDashboard exact path="/dashboard" Udash={Udash} Idash={Idash}/>
+            <PrivateRoute exact path="/settings" component={Settings}/>
           </Switch>
       </Box>
     </div>
-    </React.Fragment>
   );
 }
 

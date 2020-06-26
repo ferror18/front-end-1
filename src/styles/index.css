@@ -15,15 +15,16 @@ a{
   font-weight: bold;
   text-decoration: none;
   color: white;
-  border: white 1px solid;
+  /* border: white 1px solid; */
   border-radius: 10%;
-  padding: 5%;
+  /* padding: 5%; */
+  margin: 2px;
 }
-
+/* 
 a:hover{
   color: #028AF2;
   background: white;
-}
+} */
 
 input[type=text], select {
   height: 1.5rem;
@@ -36,9 +37,9 @@ label{
   margin: 2%;
 }
 
-link{
+/* link{
   margin: 3%;
-}
+} */
 
 #logo{
   width: 15%;
@@ -93,4 +94,7 @@ h1{
 
 #hamburger-nav-bar{
   padding: 2%;
+}
+#leftsidebtn{
+  margin-left: 75%;
 }

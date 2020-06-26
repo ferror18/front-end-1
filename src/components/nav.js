@@ -22,15 +22,31 @@ import { useStyles } from "../styles/materialUi.js";
 import { Link } from "react-router-dom";
 import { Button } from "@material-ui/core";
 import { theme as myTheme } from "../styles/materialUi.js";
+import ExitToAppIcon from '@material-ui/icons/ExitToApp';
+import BusinessCenterIcon from '@material-ui/icons/BusinessCenter';
+import SearchIcon from '@material-ui/icons/Search';
+import SettingsIcon from '@material-ui/icons/Settings';
+import AddIcon from '@material-ui/icons/Add';
+import DeleteIcon from '@material-ui/icons/Delete';
+import EditIcon from '@material-ui/icons/Edit';
+
+import { useHistory } from "react-router-dom";
+import { logOut } from "../actions/clientActions.js";
 
 const drawerWidth = 240;
 
 
 
-function Nav({loggedIn}) {
+function Nav({loggedIn, logOut}) {
   const classes = useStyles();
   const theme = useTheme(myTheme);
   const [open, setOpen] = React.useState(false);
+  const history = useHistory()
+
+  const logOutHandler = event => {
+    logOut();
+    history.push('/')
+}
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -39,6 +55,31 @@ function Nav({loggedIn}) {
   const handleDrawerClose = () => {
     setOpen(false);
   };
+  
+  const getIconForGeneralUse = function (i) {
+    switch (i) {
+      case 0:
+        return (<ListItemIcon><SearchIcon/></ListItemIcon>)
+      case 1:
+        return (<ListItemIcon><BusinessCenterIcon/></ListItemIcon>)
+      case 2:
+      return (<><Link to={'/settings'}><ListItemIcon><SettingsIcon/></ListItemIcon></Link></>)
+      case 3:
+      return (<><ListItemIcon><ExitToAppIcon onClick={logOutHandler}/></ListItemIcon></>)
+      default:
+    }
+  }
+  const getIconForClasses = function (i) {
+    switch (i) {
+      case 0:
+        return (<ListItemIcon><AddIcon/></ListItemIcon>)
+      case 1:
+        return (<ListItemIcon><EditIcon/></ListItemIcon>)
+      case 2:
+      return (<ListItemIcon><DeleteIcon/></ListItemIcon>)
+      default:
+    }
+  }
 
   return (
     <div className={classes.root}>
@@ -61,15 +102,15 @@ function Nav({loggedIn}) {
             <MenuIcon />
           </IconButton>
           <Link to={'/'}>
-          <Typography variant="h6">
+          <Typography id='brand' variant="h6">
             Anywhere-Fitness
           </Typography></Link>
           {
             loggedIn?(
-              <Link to={'/dashboard'}><Button color="inherit" >Dashboard</Button></Link>
+              <Link id='leftsidebtn' to={'/dashboard'}><Button color="inherit" >Dashboard</Button></Link>
             ) : (
               <>
-              <Link to={'/login'}><Button color="inherit">Login</Button></Link>
+              <Link id='leftsidebtn' to={'/login'}><Button color="inherit">Login</Button></Link>
               <Link to={'/signup'}><Button color="inherit">Sign Up</Button></Link>
               </>
             )
@@ -96,22 +137,28 @@ function Nav({loggedIn}) {
         </div>
         <Divider />
         <List>
-          {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
+          {['Explore Classes', 'Enrolled Classes', 'Settings', 'Log Out'].map((text, index) => (
             <ListItem button key={text}>
-              <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-              <ListItemText primary={text} />
+              {getIconForGeneralUse(index)}
+              <ListItemText onClick={logOutHandler} primary={text} />
             </ListItem>
           ))}
         </List>
-        <Divider />
-        <List>
-          {['All mail', 'Trash', 'Spam'].map((text, index) => (
-            <ListItem button key={text}>
-              <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItem>
-          ))}
-        </List>
+        {
+          (localStorage.getItem('roleId') === "1")?(
+              <>
+              <Divider />
+              <List>
+                {['Create Class', 'Edit Class', 'Delte Class'].map((text, index) => (
+                  <ListItem button key={text}>
+                    {getIconForClasses(index)}
+                    <ListItemText primary={text} />
+                  </ListItem>
+                ))}
+              </List>
+                </>
+          ) : (<span></span>)
+        }
       </Drawer>
     </div>
   );
@@ -119,8 +166,7 @@ function Nav({loggedIn}) {
 const mapStateToProps = (state) => {
     return {
       loggedIn: state.loggedIn
-
     }
   }
   
-  export default connect(mapStateToProps, {  })(Nav)
+  export default connect(mapStateToProps, { logOut })(Nav)
