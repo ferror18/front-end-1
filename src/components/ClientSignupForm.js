@@ -1,5 +1,6 @@
 import React from 'react';
 import {StyledForm, StyledButton, StyledErrorDiv, StyledInnerForm} from '../styles/StyledClient'
+import { TextField, MenuItem, Select, InputLabel, FormControl, Button } from '@material-ui/core';
 
 export default function ClientSignupForm(props){
 
@@ -7,7 +8,7 @@ export default function ClientSignupForm(props){
 
     return(
         <div>
-            <StyledForm onSubmit={onSubmit}>
+            <StyledForm >
                 <StyledErrorDiv>
                     <div>{errors.userName}</div>
                     <div>{errors.password}</div>
@@ -16,74 +17,62 @@ export default function ClientSignupForm(props){
                     <div>{errors.email}</div>
                     <div>{errors.roleId}</div>
                 </StyledErrorDiv>
-                <StyledInnerForm>
-                    <label htmlFor='userNameInput'>
-                        Username: 
-                        <input 
+                        <StyledInnerForm  noValidate autoComplete="off">
+                        <TextField id="outlined-basic" label="Username" variant="outlined" 
                             type='text'
                             id='userNameInput'
                             value={values.userName}
                             onChange={onInputChange}
                             name='userName'
-                        />
-                    </label>
-
-                    <label htmlFor='passwordInput'>
-                        Password:
-                        <input 
+                        /><br/>
+                        <TextField id="outlined-basic" label="Password" variant="outlined" 
                             type='password'
                             id='passwordInput'
                             value={values.password}
                             onChange={onInputChange}
                             name='password'
-                        />
-                    </label>
-
-                    <label htmlFor='firstNameInput'>
-                        First Name:
-                        <input 
+                        /><br/>
+                        <TextField id="outlined-basic" label="First Name" variant="outlined" 
                             type='text'
                             id='firstNameInput'
                             value={values.firstName}
                             onChange={onInputChange}
                             name='firstName'
-                        />
-                    </label>
-
-                    <label htmlFor='lastNameInput'>
-                        Last Name:
-                        <input 
+                        /><br/>
+                        <TextField id="outlined-basic" label="Last Name" variant="outlined" 
                             type='text'
                             id='lastNameInput'
                             value={values.lastName}
                             onChange={onInputChange}
                             name='lastName'
-                        />
-                    </label>
-
-                    <label htmlFor='emailInput'>
-                        Email:
-                        <input 
+                        /><br/>
+                        <TextField id="outlined-basic" label="Email" variant="outlined" 
                             type='email'
                             id='emailInput'
                             value={values.email}
                             onChange={onInputChange}
                             name='email'
-                        />
-                    </label>
-
-                    <label htmlFor='roleInput'>
-                        Role: 
-                        <select id='roleInput' onChange={onInputChange} value={values.roleId} name='roleId'>
-                            <option value=''>-- Select a Role --</option>
-                            <option value='Instructor'>Instructor</option>
-                            <option value='Client'>Client</option>
-                        </select>
-                    </label>
-
-
-                    <StyledButton id='signup' disabled={disabled} style={{background: "aliceblue"}}>Signup</StyledButton>
-                </StyledInnerForm>
+                        /><br/>
+                        <FormControl variant="outlined">
+                            <InputLabel id="demo-simple-select-outlined-label">Role</InputLabel>
+                            <Select 
+                            labelId="demo-simple-select-outlined-label"
+                            id="demo-simple-select-outlined"
+                            // id='roleInput'
+                            value={values.roleId}
+                            onChange={onInputChange}
+                            name='roleId'
+                            label='Role'
+                            >
+                            <MenuItem value=''><em>-- Select a Role --</em></MenuItem>
+                            <MenuItem value='Instructor'>Instructor</MenuItem>
+                            <MenuItem value='Client'>Client</MenuItem>
+                            </Select>
+                        </FormControl>
+                        </StyledInnerForm>
+                        <br/>
+                        <br/>
+                    <Button onClick={onSubmit} variant='contained' color='primary' disabled={disabled} >Signup</Button>
             </StyledForm>
         </div>
     )

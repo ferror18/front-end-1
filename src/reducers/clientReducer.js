@@ -43,9 +43,10 @@ import {
     CATEGORY_DELETE_START,
     CATEGORY_DELETE_SUCCESS,
     CATEGORY_DELETE_FAILURE,
-    CATEGORY_UPDATE_START,
-    CATEGORY_UPDATE_SUCCESS,
-    CATEGORY_UPDATE_FAILURE,
+    CATEGORY_GET_START,
+    CATEGORY_GET_SUCCESS,
+    CATEGORY_GET_FAILURE,
+    UP
  } from "../actions";
   // 1. create initial state
   const initialState = {
@@ -73,13 +74,21 @@ import {
     error: '',
     classes: [],
     enrolledClasses: [],
-    loggedIn: false
+    categories: [],
+    loggedIn: false,
+    update: true
 
 }
   
   // 2. pass state
   export const clientReducer = (state = initialState, action) => {
     switch (action.type) {
+      case UP:
+        console.log(action.type);
+        return {
+          ...state,
+          update: action.payload
+        }
       case USER_POST_START:
         console.log(action.type);
         return {
@@ -165,10 +174,10 @@ import {
         return (state)
       case CLASS_GET_SUCCESS:
         console.log(action.type, action.payload);
-        return({...state, classes:action.payload, error:''})
+        return{...state, classes:action.payload}
       case CLASS_GET_FAILURE:
           console.log(action.type, action.payload);
-          return({...state, error:action.payload})
+          return{...state, error:action.payload}
       case CLASS_DELETE_START:
         console.log(action.type);
         return (state)
@@ -196,6 +205,15 @@ import {
       case USER_POST_CLASS_FAILURE:
           console.log(action.type, action.payload);
           return state
+      case USER_DELETE_CLASS_START:
+        console.log(action.type);
+          return state
+      case USER_DELETE_CLASS_SUCCESS:
+          console.log(action.type, action.payload);
+          return state
+      case USER_DELETE_CLASS_FAILURE:
+          console.log(action.type, action.payload);
+          return state
       case USER_GET_CLASS_START:
         console.log(action.type);
           return state
@@ -206,8 +224,23 @@ import {
             enrolledClasses: action.payload
           }
       case USER_GET_CLASS_FAILURE:
-          console.log(action.type, action.payload);
-          return state
+        console.log(action.type, action.payload);
+        return {
+          ...state,
+          error: action.payload
+        }
+        case CATEGORY_GET_START:
+          console.log(action.type, state.categories);
+            return {state}
+        case CATEGORY_GET_SUCCESS:
+            console.log(action.type, action.payload, state.categories);
+            return {
+              ...state,
+              categoies: action.payload
+            }
+        case CATEGORY_GET_FAILURE:
+            console.log(action.type, action.payload);
+            return {state}
       default:
         return state
     }

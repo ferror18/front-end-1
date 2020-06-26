@@ -5,6 +5,7 @@ import ClientForm from './ClientForm'
 import formSchema from '../validation/clientLoginFormSchema'
 import { connect } from "react-redux"
 import { loginUser } from "../actions";
+import { Typography } from '@material-ui/core';
 
 function Client({ setLoggedIn, loginUser, id }){
 
@@ -87,7 +88,8 @@ function Client({ setLoggedIn, loginUser, id }){
     }, [id])
     return (
         <div>
-            <h1>Login</h1>
+            <br/> <br/> <br/> <br/>
+            <Typography variant='h1'>Login</Typography>
             <ClientForm 
                 values={formValues}
                 onInputChange={onInputChange}

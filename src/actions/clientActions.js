@@ -61,9 +61,11 @@ export const CATEGORY_DELETE_START = 'CATEGORY_DELETE_START'
 export const CATEGORY_DELETE_SUCCESS = 'CATEGORY_DELETE_SUCCESS'
 export const CATEGORY_DELETE_FAILURE = 'CATEGORY_DELETE_FAILURE'
 
-export const CATEGORY_UPDATE_START = 'CATEGORY_UPDATE_START'
-export const CATEGORY_UPDATE_SUCCESS = 'CATEGORY_UPDATE_SUCCESS'
-export const CATEGORY_UPDATE_FAILURE = 'CATEGORY_UPDATE_FAILURE'
+export const CATEGORY_GET_START = 'CATEGORY_GET_START'
+export const CATEGORY_GET_SUCCESS = 'CATEGORY_GET_SUCCESS'
+export const CATEGORY_GET_FAILURE = 'CATEGORY_GET_FAILURE'
+
+export const UP = 'UP'
 
 // USER ACTIONS
 export const createUser = (newUser) => (dispatch) => {
@@ -130,6 +132,7 @@ export const getClasses = () => (dispatch) => {
     .then((res) => {
       console.log(res)
       dispatch({type: CLASS_GET_SUCCESS, payload: res.data})
+      needToUpdate(false)
     })
     .catch(err => {
       console.log(err)
@@ -168,6 +171,7 @@ export const getEnrolledClasses = () => (dispatch) => {
     .then((res) => {
       console.log(res)
       dispatch({type: USER_GET_CLASS_SUCCESS, payload: res.data})
+      needToUpdate(false)
     })
     .catch(err => {
       console.log(err)
@@ -210,4 +214,32 @@ export const updateClass = (classId, newClass) => (dispatch) => {
     console.log(err);
     dispatch({type: CLASS_PUT_FAILURE, payload: err.message})
   })
+}
+
+
+
+
+// CATEGORY ACTIONS
+
+export const getCategories = () => (dispatch) => {
+  dispatch({type: CATEGORY_GET_START})
+  axiosWithAuth().get('category')
+  .then(res=>{
+    console.log(res, 'Categories')
+    dispatch({type: CATEGORY_GET_SUCCESS, payload: res.data})
+    needToUpdate(false)
+    localStorage.setItem('categories', JSON.stringify(res.data))
+  //   res.data.forEach((e, i) => {
+  //     localStorage.setItem(`${i}`, JSON.stringify(e))
+  //   });
+  })
+  .catch(err=>{
+    console.log(err);
+    dispatch({type: CATEGORY_GET_FAILURE, payload: err})
+  })
+}
+
+//utils
+export const needToUpdate = (s) => (dispatch) => {
+  dispatch({type: UP, payload: s})
 }

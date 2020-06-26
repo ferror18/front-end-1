@@ -59,9 +59,9 @@ function Nav({loggedIn, logOut}) {
   const getIconForGeneralUse = function (i) {
     switch (i) {
       case 0:
-        return (<ListItemIcon><SearchIcon/></ListItemIcon>)
+        return (<><Link to={'/dashboard'}><ListItemIcon><SearchIcon/></ListItemIcon></Link></>)
       case 1:
-        return (<ListItemIcon><BusinessCenterIcon/></ListItemIcon>)
+        return (<><Link to={'/dashboard'}><ListItemIcon><BusinessCenterIcon/></ListItemIcon></Link></>)
       case 2:
       return (<><Link to={'/settings'}><ListItemIcon><SettingsIcon/></ListItemIcon></Link></>)
       case 3:
@@ -106,7 +106,7 @@ function Nav({loggedIn, logOut}) {
             Anywhere-Fitness
           </Typography></Link>
           {
-            loggedIn?(
+            (localStorage.getItem('token'))?(
               <Link id='leftsidebtn' to={'/dashboard'}><Button color="inherit" >Dashboard</Button></Link>
             ) : (
               <>
@@ -118,6 +118,7 @@ function Nav({loggedIn, logOut}) {
         </Toolbar>
       </AppBar>
       <Drawer
+      hidden={(!localStorage.getItem('token'))}
         variant="permanent"
         className={clsx(classes.drawer, {
           [classes.drawerOpen]: open,

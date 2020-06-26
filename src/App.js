@@ -13,8 +13,12 @@ import { connect } from 'react-redux';
 import { useStyles } from './styles/materialUi';
 import Hamburger from './components/Hamburger'
 import {StyledHeader, StyledDiv} from './styles/StyledClient'
+import { Home } from "./UI/Alex/index";
+import { useLocation } from 'react-router-dom'
+
 
 function App() {
+  let location = useLocation();
   const classes = useStyles();
   const getLogo = () => {
     if(logo){
@@ -25,14 +29,13 @@ function App() {
   }
   return (
     <div className={classes.root}>
-      {/* <Box className={`${classes.offset} ${classes.content}`}> */}
       <Box className={classes.content}>
-        <Nav/>
+        {(location.pathname === '/'?<span/>:<Nav/>)}
           <Switch>
             {/* Regular Routes */}
             <Route exact path='/login' component={Client} />
             <Route exact path='/signup' component={ClientSignup}/>
-            <Route exact path='/'/>
+            <Route exact path='/' component={Home}/>
             {/* Protected Routes */}
             <PrivateRouteDashboard exact path="/dashboard" Udash={Udash} Idash={Idash}/>
             <PrivateRoute exact path="/settings" component={Settings}/>
