@@ -1,5 +1,5 @@
 import React from 'react';
-import {Link, Switch, Route} from 'react-router-dom'
+import {Switch, Route} from 'react-router-dom'
 import { Udash, Client,  ClientSignup, Idash} from './components';
 import Hamburger from './components/Hamburger'
 import { PrivateRoute } from './utils';
@@ -24,9 +24,6 @@ function App() {
           {getLogo()}
           <h2 style={{transform: 'scaleY(3) scaleX(2.5)'}}>Anywhere Fitness</h2>
         </StyledDiv>
-        {/* <a href={'https://youthful-curie-92bef1.netlify.app'}>Home</a>
-        <Link to={'/'}>Login</Link>
-        <Link to={'/signup'}>Signup</Link> */}
       </StyledHeader>
       <Switch>
         {/* Regular Routes */}

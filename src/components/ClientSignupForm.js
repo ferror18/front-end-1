@@ -18,7 +18,7 @@ export default function ClientSignupForm(props){
                 </StyledErrorDiv>
                 <StyledInnerForm>
                     <label htmlFor='userNameInput'>
-                        Username: 
+                        Username (Required): 
                         <input 
                             type='text'
                             id='userNameInput'
@@ -29,7 +29,7 @@ export default function ClientSignupForm(props){
                     </label>
 
                     <label htmlFor='passwordInput'>
-                        Password:
+                        Password (Required):
                         <input 
                             type='password'
                             id='passwordInput'
@@ -73,7 +73,7 @@ export default function ClientSignupForm(props){
                     </label>
 
                     <label htmlFor='roleInput'>
-                        Role: 
+                        Role (Required): 
                         <select id='roleInput' onChange={onInputChange} value={values.roleId} name='roleId'>
                             <option value=''>-- Select a Role --</option>
                             <option value='Instructor'>Instructor</option>

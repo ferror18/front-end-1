@@ -5,7 +5,7 @@ export const StyledDiv = styled.div`
     border: 1px solid white;
     border-radius: 6px;
     box-shadow: 0px 2px 9px -3px aliceblue;
-    margin: 3%;
+    margin: 3% 10%;
 `
 
 export const StyledCard = styled.div`

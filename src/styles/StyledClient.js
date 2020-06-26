@@ -63,11 +63,6 @@ export const StyledDiv = styled.div`
     display: flex;
     color: white;
     align-items: center;
-    justify-content: space-around;
-    padding: 15%;
-`
-
-export const StyledImgDiv = styled.div`
-    display: flex;
-    justify-content: space-between;
+    justify-content: space-evenly;
+    padding: 10%;
 `

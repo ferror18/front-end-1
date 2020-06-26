@@ -3,8 +3,6 @@ import {StyledDiv} from '../styles/StyledClass'
 import ClassCard from './ClassCard'
 
 export default function Class(props){
-    console.log(props)
-
 
     return (
         <StyledDiv>

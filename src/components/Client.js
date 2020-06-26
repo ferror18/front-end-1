@@ -1,6 +1,5 @@
 import React, {useState, useEffect} from 'react';
 import {useHistory} from 'react-router-dom'
-import axios from 'axios'
 import * as Yup from 'yup'
 import ClientForm from './ClientForm'
 import formSchema from '../validation/clientLoginFormSchema'
@@ -19,15 +18,6 @@ function Client({loginUser, id}){
     const initialFormErrors = {
         userName: '',
         password: ''
-    }
-
-    const postLogin = () => {
-                setFormValues(initialFormValues)
-                // if (roleId === 1) {
-                //     history.push('/idash')
-                // }else {
-                //     history.push('/udash')
-                // }
     }
 
     const initialError = '';
