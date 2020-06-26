@@ -14,9 +14,9 @@ const store = createStore(reducer, applyMiddleware(thunk))
 ReactDOM.render(
   <Provider store={store}>
     <Router>
-    <ThemeProvider theme={theme}>
+    {/* <ThemeProvider theme={theme}> */}
     <App/>
-    </ThemeProvider>
+    {/* </ThemeProvider> */}
     </Router>
   </Provider>,
 

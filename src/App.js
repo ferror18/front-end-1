@@ -1,8 +1,8 @@
 
 import React, { useState } from 'react';
 import { Switch, Route} from 'react-router-dom'
-import { Udash, Client,  ClientSignup, Idash, Nav} from './components';
-import { PrivateRoute } from './utils';
+import { Udash, Client,  ClientSignup, Idash, Nav, Settings} from './components';
+import { PrivateRouteDashboard, PrivateRoute } from './utils';
 // import {StyledHeader, StyledDiv, StyledImgDiv} from './styles/StyledClient'
 import logo from './UI/Alex/assets/logo.svg'
 import wClass from './styles/wClass.jpeg'
@@ -13,9 +13,12 @@ import { connect } from 'react-redux';
 import { useStyles } from './styles/materialUi';
 import Hamburger from './components/Hamburger'
 import {StyledHeader, StyledDiv} from './styles/StyledClient'
-import logo from './UI/Alex/assets/logo.svg'
+import { Home } from "./UI/Alex/index";
+import { useLocation } from 'react-router-dom'
+
 
 function App() {
+  let location = useLocation();
   const classes = useStyles();
   const getLogo = () => {
     if(logo){
@@ -25,22 +28,20 @@ function App() {
     }
   }
   return (
-
-    <React.Fragment>
     <div className={classes.root}>
-      <Box className={`${classes.offset} ${classes.content}`}>
-        <Nav/>
+      <Box className={classes.content}>
+        {(location.pathname === '/'?<span/>:<Nav/>)}
           <Switch>
             {/* Regular Routes */}
             <Route exact path='/login' component={Client} />
             <Route exact path='/signup' component={ClientSignup}/>
-            <Route exact path='/'/>
+            <Route exact path='/' component={Home}/>
             {/* Protected Routes */}
-            <PrivateRoute exact path="/dashboard" Udash={Udash} Idash={Idash}/>
+            <PrivateRouteDashboard exact path="/dashboard" Udash={Udash} Idash={Idash}/>
+            <PrivateRoute exact path="/settings" component={Settings}/>
           </Switch>
       </Box>
     </div>
-    </React.Fragment>
   );
 }
 

@@ -6,6 +6,7 @@ import Signup from './ClientSignupForm'
 import formSchema from '../validation/clientSignupFormSchema'
 import { connect } from "react-redux"
 import { createUser } from "../actions";
+import { Typography, Container } from '@material-ui/core';
 
 function ClientSignup({ createUser, error, id }){
     const history = useHistory(); 
@@ -94,8 +95,9 @@ function ClientSignup({ createUser, error, id }){
         }
     }, [id])
     return (
-        <div>
-            <h1>Signup</h1>
+        <Container>
+        <br/> <br/> <br/> <br/>
+            <Typography variant='h1'>Signup</Typography>
             <Signup 
                 values={formValues}
                 onInputChange={onInputChange}
@@ -103,7 +105,7 @@ function ClientSignup({ createUser, error, id }){
                 disabled={disabled}
                 errors={formErrors}
             />
-        </div>
+        </Container>
     )
 }
 

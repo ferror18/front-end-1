@@ -6,6 +6,11 @@ export const StyledDiv = styled.div`
     border-radius: 6px;
     box-shadow: 0px 2px 9px -3px aliceblue;
     margin: 3%;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+    align-items: center;
+    align-content: space-evenly 
 `
 
 export const StyledCard = styled.div`

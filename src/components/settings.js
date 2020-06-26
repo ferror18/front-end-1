@@ -1,7 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { deleteUser, updateUser} from "../actions";
 import { connect } from "react-redux";
 import { useHistory } from "react-router-dom";
+import { Container, FormLabel, Input, Button, Divider, Typography, TextField, Box } from "@material-ui/core";
+import { StyledInnerForm, StyledForm } from "../styles/StyledClient";
 
 const Settings = ({ 
     initialfirstName,
@@ -20,11 +22,11 @@ const Settings = ({
     lastName: initiallastName,
     email: initialemail,
     password: initialpassword,
-    roleId: initialroleId,
+    roleId: localStorage.getItem('roleId'),
     username: initialusername
     }
     const [ fval, setFval ] = useState(initState)
-    const [ hide, setHide ] = useState(true)
+    const [ disabled, setDisable ] = useState(true)
     const {
     firstName,
     lastName,
@@ -41,38 +43,47 @@ const Settings = ({
     const onSubmit = event => {
         event.preventDefault()
         updateUser(fval)
+        setDisable(false)
 
     }
     const deleteaccount = event => {
         deleteUser(initialid)
         history.push('/')
     }
+    useEffect(()=>{
+        if (fval.password !== '') {
+            setDisable(true)
+        }
+    }, [fval])
     return (
-        <div>
-        <button onClick={()=>{setHide(!hide)}}>SETTINGS</button>
-        <div hidden={hide}>
-        <h1>SETTINGS</h1><br/><br/>
-        <button onClick={deleteaccount}>DELETE MY ACCOUNT</button>
+        <Container maxWidth='xs' sytele={{backGroundColor: 'black'}}>
+        <br/> <br/> <br/> <br/>
+        <Typography variant='h1' >Account Settings</Typography><br/><br/>
         <br/><br/>
-        <h2>User Details</h2>
-        <form onSubmit={onSubmit} onChange={onChange} >
-            <label>First Name</label>
-            <input type='text' name="firstName" value={firstName}/>
-            <label>Last Name</label>
-            <input type='text' name="lastName" value={lastName}/>
-            <label>email</label>
-            <input type='text' name="email" value={email}/>
-            <label>password</label>
-            <input type='password' name="password" value={password} required/>
-            <label>role</label>
-            <input type='text' name="roleId" value={roleId}/>
-            <label>username</label>
-            <input type='text' name="username" value={username}/>
+        <StyledForm onChange={onChange} color='light'>
+            
+            <TextField type='text' name="firstName" value={firstName}/>
+            <FormLabel primary >First Name</FormLabel>
+            <TextField type='text' name="lastName" value={lastName}/>
+            <FormLabel primary >Last Name</FormLabel>
+            
+            <TextField type='text' name="email" value={email}/>
+            <FormLabel primary >email</FormLabel>
+            
+            <TextField type='password' name="password" value={password} required/>
+            <FormLabel primary >password</FormLabel>
+            
+            <TextField type='text' name="roleId" value={roleId}/>
+            <FormLabel primary >role</FormLabel>
+            
+            <TextField  primary type='text' name="username" value={username}/>
+            <FormLabel primary >username</FormLabel>
             <br/>
-            <input type='submit' value='Save Changes'/>
-        </form><br/><br/>
-        </div>
-        </div>
+            <Button  onClick={onSubmit} size='large' variant='contained' color="primary">Save Changes</Button><br/><br/>
+            <Divider/><br/><br/>
+            <Button size='large' variant='contained' color="secondary" onClick={deleteaccount}>DELETE MY ACCOUNT</Button>
+        </StyledForm><br/><br/>
+        </Container>
     )
 }
 

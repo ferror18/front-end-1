@@ -1,6 +1,7 @@
 import React from 'react';
 import {Motion, spring} from 'react-motion'
 import {StyledForm, StyledButton, StyledInnerForm, StyledErrorDiv, StyledLoginErr} from '../styles/StyledClient'
+import { TextField, Button } from '@material-ui/core';
 
 export default function ClientForm(props){
 
@@ -25,7 +26,7 @@ export default function ClientForm(props){
                     <div>{errors.password}</div>
                 </StyledErrorDiv>
                 <StyledInnerForm>
-                    <label htmlFor='userNameInput'>
+                    {/* <label htmlFor='userNameInput'>
                         UserName:
                         <input 
                             type='text'
@@ -45,10 +46,24 @@ export default function ClientForm(props){
                             onChange={onInputChange}
                             name='password'
                         />
-                    </label>
-                    <StyledButton id='login' onSubmit={onSubmit} disabled={disabled} style={{background: "aliceblue"}}>
+                    </label> */}
+                    <TextField id="outlined-basic" label="Username" variant="outlined"
+                        type='text'
+                        id='userNameInput'
+                        value={values.userName}
+                        onChange={onInputChange}
+                        name='userName'
+                        /><br/>
+                    <TextField id="outlined-basic" label="Password" variant="outlined"
+                        type='password'
+                        id='passwordInput'
+                        value={values.password}
+                        onChange={onInputChange}
+                        name='password'
+                        /><br/>
+                    <Button variant='contained' color='primary' onClick={onSubmit} disabled={disabled}>
                         Login
-                    </StyledButton>
+                    </Button>
                 </StyledInnerForm>
             </StyledForm>
         </div>
