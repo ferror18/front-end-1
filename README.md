@@ -2,6 +2,5 @@
 
 ## `Deployed project link--->  https://anywherefitnesss.netlify.app/`
 
-#### `Major Design Flaws`
-###### `Instructor cannot see clients enrolled in Class`
-###### `Categories are created by one Instructor but used by many instructors pontential issues `
+###### Anywhere-Fitness is an app tha aims to connect Fitness instructors and students, functioning as a common marketplace.
+###### It uses Create-React-app, React, Redux and Jest
